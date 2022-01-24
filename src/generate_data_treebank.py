@@ -129,6 +129,14 @@ def get_bert_embeddings(dataloader, comparison_type: str = "CLS"):
     
   return embeddings
 
+def get_bert_embeddings_with_context(dataloader):
+  embeddings = None
+  for i, batch in enumerate(dataloader):
+    # keep track of which vector positions we need to get
+    b_input_ids, b_attn_masks, b_spans = batch
+    outputs = model(b_input_ids, token_type_ids=None, attention_mask=b_attn_masks)
+    token_embeddings = outputs["last_hidden_state"]
+
 # distance between subsentences?
 def get_root_embs(df: pd.DataFrame) -> pd.DataFrame:
   root_sents = df.loc[df["tree_ind"] == "ROOT"]

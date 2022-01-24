@@ -62,6 +62,14 @@ def get_tree_results(filtered_df: pd.DataFrame, out_filename: str) -> None:
         sorted_vals = sorted_vals.drop_duplicates(subset=["sent"])
         sorted_vals.to_csv(os.path.join(out_filename, f"{tree_type}.csv"), index=False)
 
+def plot_comp_score_vs_length(full_df: pd.DataFrame, out_filename: str) -> None:
+    full_df = full_df.reset_index()
+    full_df["sent_length"] = full_df["sent"].str.split().str.len()
+    non_leaves = full_df.loc[full_df["dist_from_children"] >= 0]
+    pdb.set_trace()
+    sns.lineplot(data=non_leaves, x="sent_length", y="dist_from_children")
+    plt.savefig(out_filename)
+
 if __name__ == "__main__":
     emb_type = "avg"
     threshold = 500
@@ -71,6 +79,8 @@ if __name__ == "__main__":
     merged_df = merge_dataframes(dfs)[['full_length', 'full_sent', 'sent',
        'sublength', 'depth', 'tree_ind', 'tree_type', 'emb', 'dist_from_root',
        'dist_from_children']]
+    plot_comp_score_vs_length(merged_df, "len_vs_comp.png")
+    assert False
     merged_df.to_csv(f"./data/{emb_type}_all.csv", index=False)
     df_filtered = filter_rare_trees(merged_df, threshold)
     get_tree_results(df_filtered, f"./data/samples/{emb_type}")
