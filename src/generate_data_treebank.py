@@ -15,6 +15,7 @@ import numpy as np
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
 import argparse
 import pdb
+import spacy
 
 MAX_LENGTH = 123 # have to determine this manually
 
@@ -73,6 +74,8 @@ def get_subtree_strings_flat(tree: nltk.tree.Tree) -> List:
 
 def get_df_from_full_sentences(selected_files) -> Tuple[pd.DataFrame, int]:
   MAX_LENGTH = 0
+  NER = spacy.load("en_core_web_sm")
+
   all_sentences = get_full_sents(selected_files)
   sentence_col = []
   subsentence_col = []
@@ -81,6 +84,9 @@ def get_df_from_full_sentences(selected_files) -> Tuple[pd.DataFrame, int]:
   depth_col = []
   tree_index_col = []
   tree_type_col = []
+  named_entities = []
+  named_entity_types = []
+
   for sent in all_sentences:
     sentence_positions, leaves = get_subtree_strings(sent, return_tree_type=True)
     full_len = len(leaves)
@@ -96,11 +102,15 @@ def get_df_from_full_sentences(selected_files) -> Tuple[pd.DataFrame, int]:
         depth_col.append(depth)
         tree_index_col.append(tree_ind)
         tree_type_col.append(tree_type)
+
+        ner_tagged_text = NER(text)
+        named_entities.append(ner_tagged_text.ents)
+        named_entity_types.append([word.label_ for word in ner_tagged_text.ents])
   
   col_dict = {"full_sent": sentence_col, "full_length": sentence_len_col,
               "sent": subsentence_col, "sublength": sublength_col,
               "depth": depth_col, "tree_ind": tree_index_col,
-              "tree_type": tree_type_col}
+              "tree_type": tree_type_col, "named_ents": named_entities, "named_ent_types": named_entity_types}
 
   return pd.DataFrame(col_dict), MAX_LENGTH
 
@@ -179,6 +189,8 @@ if __name__ == "__main__":
                                                return_tensors='pt')
     input_ids = encoded_data_val['input_ids']
     attention_masks = encoded_data_val['attention_mask']
+    
+    NER = spacy.load("en_core_web_sm")
 
     assert len(input_ids) == len(attention_masks) == len(df)
 
