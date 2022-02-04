@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 from typing import Callable
 from scipy.spatial.distance import cosine
 import pdb
@@ -9,10 +8,12 @@ import argparse
 
 from composition_functions import *
 
+
 # Gets the cosine distance between a node and some composition of its children.
-def compare_node_to_children(tree_data: pd.DataFrame, vecs: np.ndarray, composition_fn: Callable) -> List:
+def compare_node_to_children(tree_data: pd.DataFrame, vecs: np.ndarray, composition_fn: Callable, add_proto_embs: bool = False) -> List:
     cosine_distance_to_children = []
     for i, row in tree_data.iterrows():
+        print(i)
         #full_sent, parent_emb, tree_pos, depth = row[1], ast.literal_eval(row[8]), row[6], row[5]
         full_sent, parent_emb, tree_pos, depth = row[1], vecs[i], row[6], row[5]
         #child_embs = get_child_embs(tree_data, full_sent, tree_pos, depth)
@@ -20,6 +21,10 @@ def compare_node_to_children(tree_data: pd.DataFrame, vecs: np.ndarray, composit
         if len(child_embs) == 0 or len(child_embs) == 1:
             cosine_distance_to_children.append(-1) # leaf node, or unary, mark with -1 to indicate no children
         else:
+            if add_proto_embs:
+                proto_emb = ast.literal_eval(row[8])
+                child_embs.append(proto_emb)
+                
             child_comp_emb = composition_fn(child_embs)
             cosine_distance_to_children.append(cosine(child_comp_emb, parent_emb))
 
@@ -50,11 +55,24 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process treebank files for subsentences and return records including BERT embeddings, tree types, and sentence positions.")
     parser.add_argument("-i", dest="selection_num", help="process number (split into 10)")
     parser.add_argument("--emb_type", help="embedding type to use", choices=["CLS", "avg", "max"], default="CLS")
-    args = parser.parse_args()
-    i, emb_type = args.selection_num, args.emb_type
+    parser.add_argument("--full", help="use all treebank data", action="store_true")
+    parser.add_argument("--cuda", help="use gpu", action="store_true")
 
-    df = pd.read_csv(f"./tree_data_{i}_{emb_type}.csv")
-    vecs = np.load(f"./data/embs/{emb_type}_{i}.npy")
+    args = parser.parse_args()
+    pdb.set_trace()
+    if args.cuda:
+        import cupy as np
+    else:
+        import numpy as np
+
+    i, emb_type, treebank_full = args.selection_num, args.emb_type, args.full
+    if treebank_full:
+        df = pd.read_csv(f"./tree_data_{i}_{emb_type}_{treebank_full}.csv")
+        vecs = np.load(f"./data/embs/{emb_type}_{i}_full_True.npy")
+    else:
+        df = pd.read_csv(f"./tree_data_{i}_{emb_type}.csv")
+        vecs = np.load(f"./data/embs/{emb_type}_{i}.npy")
+
     dist_to_children = compare_node_to_children(df, vecs, add)
     df["dist_from_children"] = dist_to_children
-    df.to_csv(f"./data/tree_data_{i}_{emb_type}.csv")
+    df.to_csv(f"./data/tree_data_{i}_{emb_type}_full_{treebank_full}.csv")

@@ -25,7 +25,6 @@ def get_compositionality_scores_bert(model, tokenizer, input_compounds, alpha_ad
         encoded_inputs = tokenizer([compound, w1, w2], padding=True, truncation=True, return_tensors="pt")
         outputs = model(encoded_inputs["input_ids"], token_type_ids=None, attention_mask=encoded_inputs["attention_mask"])
         compound_vec, v1, v2 = [outputs["last_hidden_state"][i][0].detach().numpy() for i in range(3)]
-        pdb.set_trace()
         add_scores.append(cosine(compound_vec, v1 + v2))
         mult_scores.append(cosine(compound_vec, v1 * v2))
         w1_scores.append(cosine(compound_vec, v1))
