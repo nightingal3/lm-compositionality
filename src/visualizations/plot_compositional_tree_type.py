@@ -69,7 +69,6 @@ def plot_comp_score_vs_length(full_df: pd.DataFrame, out_filename: str) -> None:
     sns.lineplot(data=non_leaves, x="sent_length", y="dist_from_children")
     plt.savefig(out_filename)
 
-def get_prototype_vector(df: pd.DataFrame. )
 if __name__ == "__main__":
     emb_type = "avg"
     threshold = 500
