@@ -8,19 +8,31 @@ import statsmodels.formula.api as smf
 
 from plot_compositional_tree_type import merge_dataframes
 
-def plot_cos_dist_hist(df: pd.DataFrame, out_filename: str, dim: int = 1) -> None:
-    if dim == 1:
-        sns.histplot(data=df, x="dist_from_children", hue="is_named_entity", kde=True)
+def plot_cos_dist_hist(df: pd.DataFrame, out_filename: str, dim: int = 1, plot_type: str = "hist") -> None:
+    if plot_type == "hist":
+        if dim == 1:
+            sns.histplot(data=df, x="dist_from_children", hue="is_named_entity", kde=True)
+        else:
+            sns.histplot(data=df, x="sublength", y="dist_from_children", hue="is_named_entity", kde=True)
     else:
-        sns.histplot(data=df, x="sublength", y="dist_from_children", hue="is_named_entity", kde=True)
+        if dim == 1:
+            sns.kdeplot(data=df, x="dist_from_children", hue="is_named_entity", common_norm=False)
+        else:
+            sns.kdeplot(data=df, x="sublength", y="dist_from_children", hue="is_named_entity", common_norm=False)
 
     plt.savefig(out_filename)
 
-def plot_named_entity_types(named_entities: pd.DataFrame, out_filename: str, dim: int = 1) -> None:
-    if dim == 1:
-        sns.histplot(data=named_entities, x="dist_from_children", hue="named_ent_types", kde=True, alpha=0.5)
+def plot_named_entity_types(named_entities: pd.DataFrame, out_filename: str, dim: int = 1, plot_type: str = "hist") -> None:
+    if plot_type == "hist":
+        if dim == 1:
+            sns.histplot(data=named_entities, x="dist_from_children", hue="named_ent_types", kde=True)
+        else:
+            sns.histplot(data=named_entities, x="sublength", y="dist_from_children", hue="named_ent_types", kde=True)
     else:
-        sns.histplot(data=named_entities, x="sublength", y="dist_from_children", hue="named_ent_types", kde=True, alpha=0.5)
+        if dim == 1:
+            sns.kdeplot(data=named_entities, x="dist_from_children", hue="named_ent_types", common_norm=False)
+        else:
+            sns.kdeplot(data=named_entities, x="sublength", y="dist_from_children", hue="named_ent_types", common_norm=False)
 
     plt.tight_layout()
     plt.savefig(out_filename)
@@ -41,19 +53,20 @@ def entity_examples(data: pd.DataFrame, cat: str, out_filename: str) -> None:
 
 if __name__ == "__main__":
     emb_type = "CLS"
-    df_paths = [f"./data/tree_data_{i}_{emb_type}.csv" for i in range(0, 10)]
+    df_paths = [f"./data/tree_data_{i}_{emb_type}_full_True.csv" for i in range(0, 10)]
     dfs = [pd.read_csv(path) for path in df_paths]
     df = merge_dataframes(dfs)
     df = df.loc[df["dist_from_children"] != -1]
+
     named_entities = df.loc[(df["is_named_entity"] == True) & (df["dist_from_children"] != -1)]
     non_named_entities = df.loc[(df["is_named_entity"] == False) & (df["dist_from_children"] != -1)]
     print(mannwhitneyu(list(named_entities["dist_from_children"]), list(non_named_entities["dist_from_children"])))
     print(mannwhitneyu(list(named_entities["sublength"]), list(non_named_entities["sublength"])))
 
-    plot_cos_dist_hist(df, "ner_test_CLS.png")
+    plot_cos_dist_hist(df, "ner_test_CLS_full.png")
     plt.gcf().clear()
     named_entities = filter_rare_entities(named_entities, 20)
-    plot_named_entity_types(named_entities, "ner_entities_only_CLS.png")
+    plot_named_entity_types(named_entities, "ner_entities_only_CLS_full.png")
     glm_model(df)
     entity_examples(named_entities, "['PERSON']", "person_examples.csv")
     entity_examples(named_entities, "['DATE']", "date_examples.csv")
@@ -63,6 +76,8 @@ if __name__ == "__main__":
     entity_examples(named_entities, "['ORG']", "org_examples.csv")
     entity_examples(named_entities, "['CARDINAL']", "cardinal_examples.csv")
     entity_examples(named_entities, "['QUANTITY']", "quantity_examples.csv")
+    entity_examples(named_entities, "['LOC']", "loc_examples.csv")
+
 
 
 

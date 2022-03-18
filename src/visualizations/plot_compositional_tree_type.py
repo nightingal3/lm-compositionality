@@ -71,18 +71,24 @@ def plot_comp_score_vs_length(full_df: pd.DataFrame, out_filename: str) -> None:
 
 if __name__ == "__main__":
     emb_type = "avg"
-    threshold = 500
-    df_paths = [f"./data/tree_data_{i}_{emb_type}.csv" for i in range(0, 10)]
-    emb_lst = [np.load(f"./data/embs/{emb_type}_{i}.npy") for i in range(0, 10)]
+    threshold = 2000
+    df_paths = [f"./data/tree_data_{i}_{emb_type}_full_True_proto_False.csv" for i in range(0, 10)]
+    emb_lst = [np.load(f"./data/embs/{emb_type}_{i}_full_True.npy") for i in range(0, 10)]
     dfs = [pd.read_csv(path) for path in df_paths]
-    merged_df = merge_dataframes(dfs)[['full_length', 'full_sent', 'sent',
-       'sublength', 'depth', 'tree_ind', 'tree_type', 'emb', 'dist_from_root',
-       'dist_from_children']]
-    plot_comp_score_vs_length(merged_df, "len_vs_comp.png")
+    merged_df = merge_dataframes(dfs)
+    merged_df.to_csv(f"./data/{emb_type}_all_full.csv", index=False)
+
+    #[['full_length', 'full_sent', 'sent',
+       #'sublength', 'depth', 'tree_ind', 'tree_type', 'emb',
+       #'dist_from_children']]
+    #df = pd.read_csv("./data/tree_data_0_CLS_full_True_proto_True.csv")
+    #merged_vecs = merge_vecs(emb_lst)
     assert False
-    merged_df.to_csv(f"./data/{emb_type}_all.csv", index=False)
+    np.save("./data/embs/CLS_all_full.npy", merged_vecs)
+    #plot_comp_score_vs_length(merged_df, "len_vs_comp.png")
+    #assert False
     df_filtered = filter_rare_trees(merged_df, threshold)
     get_tree_results(df_filtered, f"./data/samples/{emb_type}")
-    df_filtered.loc[df_filtered["dist_from_children"] >= 0.3].sort_values("dist_from_children", ascending=False)[["sent", "tree_type", "dist_from_children"]].to_csv(f"./high-dist-{emb_type}.csv")
+    df_filtered.loc[df_filtered["dist_from_children"] >= 0.3].sort_values("dist_from_children", ascending=False).drop_duplicates(subset="sent")[["sent", "tree_type", "dist_from_children"]].to_csv(f"./high-dist-{emb_type}_full_proto.csv")
     tree_stats = record_tree_stats(df_filtered)
-    plot_tree_stats(tree_stats, f"tree_dists_{emb_type}.png")
+    plot_tree_stats(tree_stats, f"tree_dists_{emb_type}_full_proto.png")

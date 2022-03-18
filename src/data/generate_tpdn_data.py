@@ -7,7 +7,7 @@ import json
 
 def generate_roles_left_right(strings: List) -> List:
     return [[i for i in range(len(s))] for s in strings]
-
+x
 def generate_roles_right_left(strings: List) -> List:
     return [[i for i in reversed(range(len(s)))] for s in strings]
 

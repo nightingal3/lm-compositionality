@@ -44,8 +44,8 @@ def get_subtree_strings(tree: nltk.tree.Tree, return_tree_type: bool = False) ->
       parse_string = " ".join(str(tree[postn]).split()) 
       try:
         copy = deepcopy(tree[postn])
-        binary_parse_string = [re.sub('\([A-Z]+(\-[A-Z]+)?', "(", x) for x in str(binarize(copy)).split()]
-        binary_parse_string = " ".join(binary_parse_string)
+        copy.chomsky_normal_form()
+        binary_parse_string = " ".join(str(copy).split())
       except:
         print("fail")
       text = " ".join([w.lower() for w in leaves if w != "*-1"])
@@ -74,7 +74,7 @@ def get_subtree_strings(tree: nltk.tree.Tree, return_tree_type: bool = False) ->
 
 # from https://stackoverflow.com/questions/44742809/how-to-get-a-binary-parse-in-python.
 # will be wrong in some cases
-def binarize(tree):
+def _binarize(tree):
     """
     Recursively turn a tree into a binary tree.
     """
@@ -155,17 +155,17 @@ def get_df_from_full_sentences(selected_files) -> Tuple[pd.DataFrame, int]:
 
   return pd.DataFrame(col_dict), MAX_LENGTH
 
-def get_bert_embeddings(dataloader, comparison_type: str = "CLS"):
+def get_bert_embeddings(dataloader, comparison_type: str = "CLS", cuda: bool = False):
   embeddings = None
   for i, batch in enumerate(dataloader):
     print(f"predicting batch {i}", "out of", len(dataloader))
     b_input_ids, b_attn_masks = batch
     outputs = model(b_input_ids, token_type_ids=None, attention_mask=b_attn_masks)
     if comparison_type == "CLS":
-      embedding = outputs[0][:,0,:].detach().numpy()
+      embedding = outputs[0][:,0,:].cpu().detach().numpy()
     elif comparison_type == "avg":
       token_embeddings = outputs["last_hidden_state"]
-      embedding = (token_embeddings.sum(axis=1) / b_attn_masks.sum(axis=-1).unsqueeze(-1)).detach().numpy()
+      embedding = (token_embeddings.sum(axis=1) / b_attn_masks.sum(axis=-1).unsqueeze(-1)).cpu().detach().numpy()
     elif comparison_type == "max":
       token_embeddings = outputs["last_hidden_state"]
       embedding, _ = torch.max((token_embeddings * b_attn_masks.unsqueeze(-1)), axis=1)
@@ -179,6 +179,9 @@ def get_bert_embeddings(dataloader, comparison_type: str = "CLS"):
       
     
   return embeddings
+
+def get_one_bert_emb(model, tokenizer, phrase, emb_type: str = "CLS", cuda: bool = False):
+  raise NotImplementedError
 
 def get_bert_embeddings_with_context(dataloader):
   embeddings = None
@@ -214,11 +217,7 @@ if __name__ == "__main__":
     parser.add_argument("--treebank_path", help="path to treebank files. Defaults to NLTK treebank sample if not supplied.", action="store_true")
     parser.add_argument("--cuda", help="use gpu", action="store_true")
     args = parser.parse_args()
-    if args.cuda:
-        import cupy as np
-    else:
-        import numpy as np
-        
+            
     if args.treebank_path:
       treebank = CategorizedBracketParseCorpusReader(r"/projects/tir1/corpora/treebank_3/parsed/mrg/", r'(wsj/\d\d/wsj_\d\d\d\d.mrg|brown/c[a-z]/c[a-z])\d\d.mrg', cat_file='allcats.txt', tagset='wsj')
     else:
@@ -237,6 +236,10 @@ if __name__ == "__main__":
                                                truncation=True,
                                                max_length=512, 
                                                return_tensors='pt')
+    if args.cuda:
+      model.to("cuda")
+      encoded_data_val.to("cuda")
+
     input_ids = encoded_data_val['input_ids']
     attention_masks = encoded_data_val['attention_mask']
     
@@ -245,7 +248,7 @@ if __name__ == "__main__":
     dataset = TensorDataset(input_ids, attention_masks)
     dataloader = DataLoader(dataset, sampler=SequentialSampler(dataset), batch_size=32)
 
-    embeddings = get_bert_embeddings(dataloader, comparison_type=args.emb_type)
+    embeddings = get_bert_embeddings(dataloader, comparison_type=args.emb_type, cuda=args.cuda)
     df["emb"] = embeddings.tolist()
     np.save(f"./data/embs/{args.emb_type}_{args.selection_num}_full_{args.treebank_path}.npy", embeddings)
 

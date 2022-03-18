@@ -25,8 +25,9 @@ def get_prototype_vec(df: pd.DataFrame, emb_type: str = "mean") -> np.ndarray:
     
     return proto
 
-def get_pos_prototypes(df: pd.DataFrame, threshold: int = 1000) -> dict:
+def get_pos_prototypes(df: pd.DataFrame, threshold: int = 100) -> dict:
     cat_prototypes = {}
+    print("getting prototypes...")
     for tree_type in df["tree_type"].unique():
         selected_rows = df.loc[df["tree_type"] == tree_type]
         if len(selected_rows) < threshold:
@@ -84,8 +85,9 @@ def dist_to_prototypes(df: pd.DataFrame, vecs: np.ndarray, cat_prototypes:dict) 
     all_dists = np.zeros((len(df), 1))
     proto_vecs = np.zeros((len(df), 768))
     mask = np.ones((len(df), 1), dtype=bool)
-
+    print("finding dist to prototypes...")
     for tree_type in cat_prototypes:
+        print(tree_type)
         selected_rows = df.loc[df["tree_type"] == tree_type]
         selected_vecs = np.array([vecs[i] for i in selected_rows.index])
         proto_matrix = np.tile(cat_prototypes[tree_type], (len(selected_vecs), 1))
@@ -94,9 +96,9 @@ def dist_to_prototypes(df: pd.DataFrame, vecs: np.ndarray, cat_prototypes:dict) 
             all_dists[real_ind] = dists[i]
             mask[real_ind] = False
             proto_vecs[real_ind] = cat_prototypes[tree_type]
-            pdb.set_trace()
-
+    
     all_dists[mask] = -1
+    proto_vecs = [x.tolist() for x in proto_vecs]
     new_df["proto_emb"] = proto_vecs
     new_df["dist_from_proto"] = all_dists
     return new_df
@@ -106,16 +108,16 @@ def parent_distance_child_and_prototype(df: pd.DataFrame, cat_prototypes: dict, 
 
 if __name__ == "__main__":
     emb_type = "CLS"
-    df_paths = [f"./data/tree_data_{i}_{emb_type}.csv" for i in range(0, 10)]
+    df_paths = [f"./data/tree_data_{i}_{emb_type}_full_True.csv" for i in range(0, 10)]
     dfs = [pd.read_csv(path) for path in df_paths]
     df = merge_dataframes(dfs)
-    vecs = np.load(f"./data/embs/CLS_all.npy")
+    vecs = np.load(f"./data/embs/CLS_all_full.npy")
 
     #cat_prototypes = get_pos_prototypes(df)
-    cat_prototypes = pickle.load(open("cat_proto_reduced.p", "rb"))
-    #pickle.dump(cat_prototypes, open("cat_proto_reduced.p", "wb"))
+    cat_prototypes = pickle.load(open("cat_proto_full.p", "rb"))
+    #pickle.dump(cat_prototypes, open("cat_proto_full.p", "wb"))
     #vector_analogies(cat_prototypes)
     #plot_cat_prototypes(cat_prototypes, "pca_tree_type.png")
     new_df = dist_to_prototypes(df, vecs, cat_prototypes)
-    new_df.to_csv("./proto-dist.csv", index=False)
+    new_df.to_csv("./proto-dist-full.csv", index=False)
 
