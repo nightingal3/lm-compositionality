@@ -14,6 +14,7 @@ from src.models.get_vecs import get_one_vec, model_init
 # Gets the cosine distance between a node and some composition of its children.
 def compare_node_to_children(tree_data: pd.DataFrame, vecs: np.ndarray, composition_fn: Callable, add_proto_embs: bool = False, vec_type: str = "cls") -> List:
     lm_model, lm_tokenizer = model_init("bert", cuda=torch.cuda.is_available())
+    lm_model.eval()
     cosine_distance_to_children = []
     all_child_ids = []
     binary_child_text = []

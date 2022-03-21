@@ -228,6 +228,7 @@ if __name__ == "__main__":
     model = BertModel.from_pretrained('bert-base-uncased',
     output_attentions = False, 
     output_hidden_states = True)
+    model.eval()
     test_samples = df["sent"].tolist()
     encoded_data_val = tokenizer.batch_encode_plus(test_samples, 
                                                add_special_tokens=True, 
