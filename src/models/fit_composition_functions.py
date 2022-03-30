@@ -29,7 +29,7 @@ probe_types = {
     "mlp": "par",
     "tpdn": "par"
 }
-MAX_EPOCHS = 5 #change this to 100 on final run
+MAX_EPOCHS = 20 #change this to 100 on final run
 BATCH_SIZE = 256
 
 # for composition prediction, input size is number of children and output size is embedding size.
@@ -172,7 +172,7 @@ def seed_everything(seed: int):
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = True
 
-def fit_composition(probe_type: str = "add", vec_type: str = "CLS", loss_type: str = "cosine", rand_seed: int = 42, full: bool = False, binary_trees: bool = False, control_task: bool = False) -> None:
+def fit_composition(probe_type: str = "add", vec_type: str = "CLS", loss_type: str = "cosine", rand_seed: int = 42, full: bool = False, binary_trees: bool = False, control_task: bool = False, use_trained: bool = False) -> None:
     seed_everything(rand_seed)
     seed_seq = np.random.randint(0, 1000, 10)
     print(seed_seq)
@@ -243,8 +243,10 @@ def fit_composition(probe_type: str = "add", vec_type: str = "CLS", loss_type: s
 
         print("~TEST~")
         num_samples = len(test_loader.dataset)
-        test_loss, test_loss_cats, freq_cats, deviations_from_expected = test(model, probe_type, test_loader, binary_vec_data, loss_fn, log_path, binary_trees, control_task=control_task, vec_type=vec_type)
-            
+        test_loss, test_loss_cats, freq_cats, deviations_from_expected = test(model, probe_type, test_loader, binary_vec_data, loss_fn, log_path, binary_trees, control_task=control_task, vec_type=vec_type, record_deviation=True)
+        deviation_df = pd.DataFrame(deviations_from_expected).sort_values(by="deviation")
+        deviation_df.to_csv(f"{log_path}/deviations_{i}.csv", index=False)
+        
         avg_test_loss = test_loss / num_samples
         avg_test_loss_cats = {cat: loss / freq_cats[cat] for cat, loss in test_loss_cats.items()}
         overall_loss[i] = avg_test_loss
@@ -315,9 +317,9 @@ def train(partition_num: int, probe_type: str, train_loader: torch.utils.data.Da
     model_name_orig = f"model_{partition_num}_bintree_original" if binary_trees else f"model_{partition_num}_original"  
     torch.save(model.state_dict(), f"{log_path}/{model_name_orig}.pt")
 
-    # Milestones: 0.1%, 0.5%, 1%, 2%, 5%, 10% increments 
+    # Milestones: 0.1%, 0.5%, 1%, 2%, 5%, 10%, 20%, 50%, 100% increments 
     if record_training_curve:
-        training_milestones = [int(0.001 * num_samples), int(0.005 * num_samples), int(0.01 * num_samples), int(0.02 * num_samples), int(0.05 * num_samples)] + [int(0.1 * i * num_samples) for i in range(1, 10)]
+        training_milestones = [int(0.001 * num_samples), int(0.005 * num_samples), int(0.01 * num_samples), int(0.02 * num_samples), int(0.05 * num_samples), int(0.1 * num_samples), int(0.2 * num_samples), int(0.5 * num_samples), num_samples]
     else:
         training_milestones = [num_samples]
 
@@ -403,10 +405,13 @@ def test(model, probe_type: str, test_loader: torch.utils.data.DataLoader, binar
     test_loss_cats = {}
     freq_cats = {}
     split_index_for_sents = {}
-    deviations_from_expected = {}
+    deviations_from_expected = {"sent": [], "tree_type": [], "deviation": [], "binary_text": []}
+    deviations_sents = []
     
     for test_sample in tqdm(test_loader):
+        sents = test_sample["sent"]
         sent_cat = test_sample["tree_type"]
+        bin_text = test_sample["binary_text"]
         actual_emb = test_sample["emb"]
         child_embs = test_sample["child_embs"]
 
@@ -452,7 +457,10 @@ def test(model, probe_type: str, test_loader: torch.utils.data.DataLoader, binar
 
                 if record_deviation:
                     for i, sent in enumerate(test_sample["sent"]):
-                        deviations_from_expected["sent"] = loss[i]
+                        deviations_from_expected["sent"].append(sent)
+                        deviations_from_expected["binary_text"].append(bin_text[i])
+                        deviations_from_expected["tree_type"].append(sent_cat[i])
+                        deviations_from_expected["deviation"].append(loss[i].item())
 
         for i, s_c in enumerate(sent_cat):
             if s_c not in test_loss_cats:
@@ -471,7 +479,10 @@ if __name__ == "__main__":
     parser.add_argument("--full", help="use the full treebank (default only 10%)", action="store_true")
     parser.add_argument("--use_binary", help="use binary parse trees (default is n-ary trees)", action="store_true")
     parser.add_argument("--use_control_task", help="evaluate probe on the control task (default is on the true task)", action="store_true")
+    parser.add_argument("--use_trained", help="use pretrained probes (to evaluate other layers)", action="store_true")
+    parser.add_argument("--lm_type", help="type of LM to approximate.", choices=["bert", "roberta", "deberta"], default="bert")
+    parser.add_argument("-l", "--layers", help="Layer to examine", type=int, default=12, choices=[i for i in range(1, 13)])
     args = parser.parse_args()
     vec_type = "CLS" if args.emb_type == "cls" else "avg"
 
-    fit_composition(args.probe_type, vec_type=vec_type, full=args.full, binary_trees=args.use_binary, control_task=args.use_control_task)
+    fit_composition(args.probe_type, vec_type=vec_type, full=args.full, binary_trees=args.use_binary, control_task=args.use_control_task, use_trained=args.use_trained)
