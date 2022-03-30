@@ -25,15 +25,18 @@ probe_types = {
     "w1": "nonpar",
     "w2": "nonpar",
     "linear": "par",
+    "affine": "par",
     "mlp": "par",
     "tpdn": "par"
 }
+MAX_EPOCHS = 5 #change this to 100 on final run
+BATCH_SIZE = 256
 
 # for composition prediction, input size is number of children and output size is embedding size.
 # for decomposition prediction, input size is embedding size and output size is number of children * embedding size
-class LinearRegression(torch.nn.Module):
+class AffineRegression(torch.nn.Module):
     def __init__(self, input_size: int, output_size: int, cuda: bool = False):
-        super(LinearRegression, self).__init__()
+        super(AffineRegression, self).__init__()
         self.input_size = input_size
         self.output_size = output_size
         self.device = "cuda" if cuda else "cpu"
@@ -41,12 +44,24 @@ class LinearRegression(torch.nn.Module):
         self.b = torch.nn.Parameter(torch.randn((1, output_size), requires_grad=True, device=self.device))
 
     def forward(self, x): 
-        assert len(x) <= self.input_size
-        if x.shape[0] < self.input_size:
-            padding = torch.zeros((self.input_size - x.shape[0], self.output_size), device=self.device)
-            x = torch.vstack([x, padding])
-        pred = self.W.mm(x) + self.b
+        #assert len(x) <= self.input_size
+        #if x.shape[0] < self.input_size:
+            #padding = torch.zeros((self.input_size - x.shape[0], self.output_size), device=self.device)
+            #x = torch.vstack([x, padding])
+        pred = torch.matmul(self.W.double(), x.double()) + self.b
         return pred.squeeze(0)
+
+class LinearRegression(torch.nn.Module):
+    def __init__(self, input_size: int, output_size: int, cuda: bool = False):
+        super(LinearRegression, self).__init__()
+        self.input_size = input_size
+        self.output_size = output_size
+        self.device = "cuda" if cuda else "cpu"
+        self.W = torch.nn.Parameter(torch.randn((1, input_size), requires_grad=True, device=self.device))
+
+    def forward(self, x): 
+        pred = torch.matmul(self.W.double(), x.double()) # (1 x 2) x (b x 2 x 768)
+        return pred.squeeze(1) # (b x 768)
 
 class MLP(torch.nn.Module):
     def __init__(self, input_size: int, output_size: int, hidden_size: int, cuda: bool = False):
@@ -62,16 +77,47 @@ class MLP(torch.nn.Module):
         # reasonable number of layers?
 
     def forward(self, x):
-        assert len(x) <= self.input_size
-        if x.shape[0] < self.input_size:
-            padding = torch.zeros((self.input_size - x.shape[0], self.output_size), device=self.device)
-            x = torch.vstack([x, padding])
+        #assert len(x) <= self.input_size
+        #if x.shape[0] < self.input_size:
+            #padding = torch.zeros((self.input_size - x.shape[0], self.output_size), device=self.device)
+            #x = torch.vstack([x, padding])
         hidden = self.hidden1(x.T)
         hidden_relu = self.relu(hidden)
         hidden_2 = self.hidden2(hidden_relu)
         hidden_2_relu = self.relu(hidden_2)
         out = self.output(hidden_2_relu)
         return out.T.squeeze(0)
+
+class EmbeddingDataset(Dataset):
+    def __init__(self, csv_path, child_embeddings_path):
+        self.csv_path = csv_path
+        self.child_embeddings_path = child_embeddings_path
+        self.raw_data_df = pd.read_csv(csv_path)
+        self.raw_data_df["original_order"] = self.raw_data_df.index
+        self.data_df = self.raw_data_df.loc[self.raw_data_df["binary_text"].str.len() > 2] # () has length 2
+        self.sents_with_children = set(self.data_df["sent"])
+        self.binary_vec_data = np.load(child_embeddings_path, mmap_mode="r+")
+
+    def __len__(self):
+        return len(self.data_df)
+    
+    def __getitem__(self, idx):
+        sent = self.data_df["sent"].iloc[idx]
+        tree_type = self.data_df["tree_type"].iloc[idx]
+        #binary_tree_type = self.data_df["binary_tree_type"]
+        binary_text = self.data_df["binary_text"].iloc[idx]
+        original_index = self.data_df["original_order"].iloc[idx]
+        parent_emb = torch.FloatTensor(ast.literal_eval(self.data_df["emb"].iloc[idx]))
+        child_embs = self.binary_vec_data[original_index]
+
+        return {
+            "sent": sent,
+            "tree_type": tree_type,
+            "binary_text": binary_text,
+            "emb": parent_emb,
+            "child_embs": child_embs
+        }
+
 
 # From original TPDN code!
 # https://github.com/tommccoy1/tpdn/blob/a4ea54030056a49e5fd00a700eb71790157bc697/binding_operations.py#L13
@@ -124,11 +170,14 @@ def seed_everything(seed: int):
 
 def fit_composition(probe_type: str = "add", vec_type: str = "CLS", loss_type: str = "cosine", rand_seed: int = 42, full: bool = False, binary_trees: bool = False, control_task: bool = False) -> None:
     seed_everything(rand_seed)
+    seed_seq = np.random.randint(0, 1000, 10)
+    print(seed_seq)
+
     log_path =  f"./data/{probe_type}_{vec_type}_results/binary_trees/" if binary_trees else f"./data/{probe_type}_{vec_type}_results/"
 
     if binary_trees:
-        lm_model, lm_tokenizer = model_init("bert", cuda=torch.cuda.is_available())
-        lm_model.eval()
+        #lm_model, lm_tokenizer = model_init("bert", cuda=torch.cuda.is_available())
+        #lm_model.eval()
         vec_type_lower = vec_type.lower()
         if full:
             binary_vec_data = np.load(f"./data/binary_child_embs_{vec_type_lower}.npy", mmap_mode="r+")
@@ -141,34 +190,19 @@ def fit_composition(probe_type: str = "add", vec_type: str = "CLS", loss_type: s
         log_path += "full/"
         data_df = pd.read_csv(f"./data/{vec_type}_all_full.csv")
         data_df["original_order"] = data_df.index
-        #dataset_full = load_dataset("csv", data_files=[f"data/tree_data_{i}_avg_full_True_proto_False.csv" for i in range(10)], split=[f'train[{k}%:{k+10}%]' for k in range(0, 100, 10)])
-        #if vec_type == "avg":
-            #dataset_full = load_dataset("csv", data_files=[f"tree_data_{i}_{vec_type}_True.csv" for i in range(10)], split=[
-            #f'train[{k}%:{k+10}%]' for k in range(0, 100, 10)
-            #])
-        #else:
-            #dataset_full = load_dataset("csv", data_files=[f"tree_data_{i}_{vec_type}_True.csv" for i in range(10)], split=[
-            #f'train[{k}%:{k+10}%]' for k in range(0, 100, 10)
-            #])
         dataset_full = Dataset.from_pandas(data_df)
         kfold = KFold(n_splits=10, shuffle=False)
         dataset_full_inds = kfold.split(dataset_full)
         
     else:
         data_df = pd.read_csv(f"./data/small_test/{vec_type}_sample.csv")
-        data_df["original_order"] = data_df.index
-        data_df = data_df.dropna(subset=["sent"])
-
-        #dataset_full = load_dataset("csv", data_files=f"./data/small_test/{vec_type}_sample.csv", split=[
-        #f'train[{k}%:{k+10}%]' for k in range(0, 100, 10)
-        #])
-        dataset_full = Dataset.from_pandas(data_df)
+        dataset_full = EmbeddingDataset(f"./data/small_test/{vec_type}_sample.csv", f"./data/small_test/{vec_type}_bin_data_sample.npy")
         # loading datasets using load_dataset and split doesn't work for some reason....
         kfold = KFold(n_splits=10, shuffle=False)
         dataset_full_inds = kfold.split(dataset_full)
 
     if loss_type == "cosine":
-        loss_fn = lambda x, y: 1 - torch.nn.functional.cosine_similarity(x, y, dim=0)
+        loss_fn = lambda x, y: 1 - torch.nn.functional.cosine_similarity(x, y, dim=1)
     elif loss_type == "mse":
         loss_fn = torch.nn.MSELoss()
 
@@ -181,16 +215,16 @@ def fit_composition(probe_type: str = "add", vec_type: str = "CLS", loss_type: s
 
     for i, (train_indices, test_indices) in enumerate(dataset_full_inds):
         print(f"=== PARTITION {i} ===")
+        seed_everything(seed_seq[i])
         if probe_types[probe_type] == "par":
-            #test_data = partition
-            #train_data = concatenate_datasets([dataset_full[j] for j in range(len(dataset_full)) if j != i])
-            #train_data = train_data.shuffle(seed=rand_seed)
-            #test_data = dataset_full[test_indices]
-            #train_data = dataset_full[train_indices]
-            test_data = torch.utils.data.Subset(dataset_full, test_indices.tolist())
+            random.shuffle(test_indices)
+            val_indices, true_test_indices = test_indices[: len(test_indices) // 2], test_indices[len(test_indices) // 2:]
+            test_data = torch.utils.data.Subset(dataset_full, true_test_indices.tolist())
+            val_data = torch.utils.data.Subset(dataset_full, val_indices.tolist())
             train_data = torch.utils.data.Subset(dataset_full, train_indices.tolist())
-            test_loader = torch.utils.data.DataLoader(test_data, batch_size=1, shuffle=False)
-            train_loader = torch.utils.data.DataLoader(train_data, batch_size=1, shuffle=False)
+            test_loader = torch.utils.data.DataLoader(test_data, batch_size=BATCH_SIZE, shuffle=False)
+            val_loader = torch.utils.data.DataLoader(val_data, batch_size=BATCH_SIZE, shuffle=True)
+            train_loader = torch.utils.data.DataLoader(train_data, batch_size=BATCH_SIZE, shuffle=True)
 
         else:
             train_data = []
@@ -199,26 +233,18 @@ def fit_composition(probe_type: str = "add", vec_type: str = "CLS", loss_type: s
 
         print("~TRAIN~")
         if probe_types[probe_type] == "par":
-            model = train(i, probe_type, train_loader, test_loader, binary_vec_data, loss_fn, log_path, binary_trees, record_training_curve=True)
+            model = train(i, probe_type, train_loader, val_loader, binary_vec_data, loss_fn, log_path, binary_trees, record_training_curve=True, train_dataset=train_data)
         else:
             model = None
 
         print("~TEST~")
-        test_loss = 0
-        test_loss_cats = {}
-        freq_cats = {}
-        non_leaves = 0
-
-        test_loss, test_loss_cats, freq_cats, non_leaves = test(model, probe_type, test_loader, binary_vec_data, loss_fn, log_path, binary_trees, control_task=control_task, lm_model=lm_model, lm_tokenizer=lm_tokenizer, vec_type=vec_type)
-        
-        if non_leaves == 0:
-            print("No non-leaves?")
-            continue
+        num_samples = len(test_loader.dataset)
+        test_loss, test_loss_cats, freq_cats, deviations_from_expected = test(model, probe_type, test_loader, binary_vec_data, loss_fn, log_path, binary_trees, control_task=control_task, vec_type=vec_type)
             
-        avg_test_loss = test_loss / non_leaves
+        avg_test_loss = test_loss / num_samples
         avg_test_loss_cats = {cat: loss / freq_cats[cat] for cat, loss in test_loss_cats.items()}
         overall_loss[i] = avg_test_loss
-        partition_len[i] = len(test_data)
+        partition_len[i] = num_samples
 
         for cat in avg_test_loss_cats: # feel like there should be a builtin to efficiently do this?
             if cat not in overall_loss_cats:
@@ -252,12 +278,20 @@ def fit_composition(probe_type: str = "add", vec_type: str = "CLS", loss_type: s
             out_f.write(f"{cat}: {total_test_loss_cats[cat] / freq_cats_overall[cat]},{freq_cats_overall[cat]}\n")
 
 
-def train(partition_num: int, probe_type: str, train_loader: torch.utils.data.DataLoader, test_loader: torch.utils.data.DataLoader, binary_vec_data: np.ndarray, loss_fn: Callable, log_path: str, binary_trees: bool, record_training_curve: bool = False):
+def train(partition_num: int, probe_type: str, train_loader: torch.utils.data.DataLoader, test_loader: torch.utils.data.DataLoader, binary_vec_data: np.ndarray, loss_fn: Callable, log_path: str, binary_trees: bool, record_training_curve: bool = False, patience: int = 2, train_dataset = None):
+    all_children = []
+    num_samples = len(train_dataset)
+    num_samples_dev = len(test_loader.dataset) 
     if probe_type == "linear":
+            if binary_trees:
+                model = LinearRegression(input_size=2, output_size=768, cuda=torch.cuda.is_available())
+            else:
+                model = LinearRegression(input_size=5, output_size=768, cuda=torch.cuda.is_available())
+    elif probe_type == "affine":
         if binary_trees:
-            model = LinearRegression(input_size=2, output_size=768, cuda=torch.cuda.is_available())
+            model = AffineRegression(input_size=2, output_size=768, cuda=torch.cuda.is_available())
         else:
-            model = LinearRegression(input_size=5, output_size=768, cuda=torch.cuda.is_available())
+            model = AffineRegression(input_size=5, output_size=768, cuda=torch.cuda.is_available())
     elif probe_type == "mlp":
         if binary_trees:
             model = MLP(input_size=2, output_size=768, hidden_size=300, cuda=torch.cuda.is_available())
@@ -270,68 +304,88 @@ def train(partition_num: int, probe_type: str, train_loader: torch.utils.data.Da
             model = TPDN(input_size=2, output_size=768, hidden_size=300, role_size=10, cuda=torch.cuda.is_available())
         else:
             model = TPDN(input_size=5, output_size=768, filler_size=768, role_size=10, cuda=torch.cuda.is_available())
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.001 * BATCH_SIZE)
 
-    all_children = []
-    optimizer = torch.optim.Adam(model.parameters())
-    training_milestones = [int(0.01 * len(train_loader)), int(0.05 * len(train_loader))] + [int(0.1 * i * len(train_loader)) for i in range(1, 10)]
+    # Save the original weights so we can compare data size for the same weight initialization
+    Path(log_path).mkdir(parents=True, exist_ok=True)
+    model_name_orig = f"model_{partition_num}_bintree_original" if binary_trees else f"model_{partition_num}_original"  
+    torch.save(model.state_dict(), f"{log_path}/{model_name_orig}.pt")
+
+    # Milestones: 0.1%, 0.5%, 1%, 2%, 5%, 10% increments 
+    if record_training_curve:
+        training_milestones = [int(0.001 * num_samples), int(0.005 * num_samples), int(0.01 * num_samples), int(0.02 * num_samples), int(0.05 * num_samples)] + [int(0.1 * i * num_samples) for i in range(1, 10)]
+    else:
+        training_milestones = [num_samples]
+
     milestone_losses = []
-    eval_loss_next = False
-    for i, sample in enumerate(tqdm(train_loader)):
-        if type(sample["emb"]) == "str":
-            actual_emb = torch.FloatTensor(ast.literal_eval(sample["emb"]))
-        else: # batch size of 1, maybe do batching later
-            actual_emb = torch.FloatTensor(ast.literal_eval(sample["emb"][0]))
 
-        if type(sample["child_ids"]) == "str":
-            child_id_lst = ast.literal_eval(sample["child_ids"])
-        else:
-            child_id_lst = ast.literal_eval(sample["child_ids"][0])
+    for i, dataset_size in enumerate(training_milestones):
+        epochs_no_improvement = 0
+        best_loss = float("inf")
+        if i > 0: # reset to original params
+            model.load_state_dict(torch.load(f"{log_path}/{model_name_orig}.pt"))
+        print("w: ", model.W)
 
-        if torch.cuda.is_available():
-            actual_emb = actual_emb.to("cuda")
+        if dataset_size != num_samples:
+            random_indices = random.sample(list(range(num_samples)), dataset_size)
+            train_subset = torch.utils.data.Subset(train_dataset, random_indices)
+            subset_loader = torch.utils.data.DataLoader(train_subset, batch_size=BATCH_SIZE, shuffle=True)
 
-        if i in training_milestones and record_training_curve:
-            eval_loss_next = True
+        train_loader_subset = train_loader if dataset_size == num_samples else subset_loader
 
-        #TODO: change this to get from child IDs (currently hash is broken)
-        #child_embs = torch.FloatTensor(get_child_embs_from_id(data_df, child_id_lst))
-        if binary_trees:
-            binary_text = ast.literal_eval(sample["binary_text"][0])
-            if len(binary_text) < 2:
-                continue
-            child_embs = torch.FloatTensor(binary_vec_data[sample["original_order"].item()])
-        else:
-            child_embs = torch.FloatTensor(get_child_embs(data_df, sample["full_sent"][0], sample["tree_ind"][0], sample["depth"][0])[0])
+        for epoch in range(MAX_EPOCHS):
+            if epochs_no_improvement == patience:
+                print("no improvements seen. Stopping training...")
+                break
+            print(f"EPOCH {epoch}")
+            epoch_loss_total = 0
+            for sample in tqdm(train_loader_subset):
+                child_embs = sample["child_embs"]
+                actual_emb = sample["emb"]
+                if torch.cuda.is_available():
+                    child_embs = child_embs.to("cuda")
+                    actual_emb = actual_emb.to("cuda")
 
-        if torch.cuda.is_available():
-            child_embs = child_embs.to("cuda")
-        all_children.append(len(child_embs))
-        if len(child_embs) > 5: # idk what kind of sentence this would be
-            continue
-        if len(child_embs) == 0 or len(child_embs) == 1:
-            continue
-        optimizer.zero_grad()
-        if probe_type == "tpdn":
-            roles = torch.tensor(range(len(child_embs)), device="cuda", dtype=int)
-            pred = model(child_embs, roles)
-        else:
-            pred = model(child_embs)
-        loss = loss_fn(actual_emb, pred)
-        loss.backward()
-        optimizer.step()
+                pred = model(child_embs)
 
-        if eval_loss_next: #evaluate and save value when we reach a training milestone
-            print("milestone")
-            test_loss, test_loss_cats, freq_cats, non_leaves = test(model, probe_type, test_loader, binary_vec_data, loss_fn, log_path, binary_trees)
+                optimizer.zero_grad()
+                if probe_type == "tpdn":
+                    roles = torch.tensor(range(len(child_embs)), device="cuda", dtype=int)
+                    pred = model(child_embs, roles)
+                else:
+                    pred = model(child_embs)
+                loss = loss_fn(actual_emb, pred)
+                mean_loss = torch.mean(loss)
+                total_loss = torch.sum(loss)
+                epoch_loss_total += total_loss.item()
+                mean_loss.backward()
+                optimizer.step()
+
+            dev_loss, dev_loss_cats, freq_cats, _ = test(model, probe_type, test_loader, binary_vec_data, loss_fn, log_path, binary_trees)
             model.train()
-            avg_test_loss = test_loss / non_leaves
-            milestone_losses.append(avg_test_loss)
-            eval_loss_next = False
+    
+            avg_dev_loss = dev_loss/num_samples_dev
+            #print(model.W)
+            #print(avg_dev_loss)
 
-    if probe_types[probe_type] == "par":
-        Path(log_path).mkdir(parents=True, exist_ok=True)
-        model_name = f"model_{partition_num}_bintree" if binary_trees else f"model_{partition_num}"  
-        torch.save(model.state_dict(), f"{log_path}/{model_name}.pt")
+            if avg_dev_loss < best_loss:
+                print("improvement :)")
+                epochs_no_improvement = 0
+                best_loss = avg_dev_loss
+
+                if probe_types[probe_type] == "par":
+                    Path(log_path).mkdir(parents=True, exist_ok=True)
+                    model_name = f"model_{partition_num}_bintree" if binary_trees else f"model_{partition_num}"  
+                    torch.save(model.state_dict(), f"{log_path}/{model_name}.pt")
+            else:
+                print("no improvement :(")
+                epochs_no_improvement += 1
+
+        dev_loss, dev_loss_cats, freq_cats, _ = test(model, probe_type, test_loader, binary_vec_data, loss_fn, log_path, binary_trees)
+        model.train()
+
+        avg_dev_loss = dev_loss/num_samples_dev
+        milestone_losses.append(avg_dev_loss)
 
     if record_training_curve:
         losses_name = f"{log_path}/model_{partition_num}_losses.p"
@@ -340,49 +394,19 @@ def train(partition_num: int, probe_type: str, train_loader: torch.utils.data.Da
 
     return model
 
-def test(model, probe_type: str, test_loader: torch.utils.data.DataLoader, binary_vec_data: np.ndarray, loss_fn: Callable, log_path: str, binary_trees: bool, control_task: bool = False, lm_model = None, lm_tokenizer = None, vec_type: str = "cls"):
+def test(model, probe_type: str, test_loader: torch.utils.data.DataLoader, binary_vec_data: np.ndarray, loss_fn: Callable, log_path: str, binary_trees: bool, control_task: bool = False, lm_model = None, lm_tokenizer = None, vec_type: str = "cls", record_deviation=False):
     test_loss = 0
     test_loss_cats = {}
     freq_cats = {}
-    non_leaves = 0
     split_index_for_sents = {}
+    deviations_from_expected = {}
+    
     for test_sample in tqdm(test_loader):
-        sent_cat = test_sample["tree_type"][0]
-        actual_emb = torch.FloatTensor(ast.literal_eval(test_sample["emb"][0]))
-        child_ids = ast.literal_eval(test_sample["child_ids"][0])
-        
-        if binary_trees:
-            binary_text = ast.literal_eval(test_sample["binary_text"][0])
-            if len(binary_text) < 2:
-                continue
+        sent_cat = test_sample["tree_type"]
+        actual_emb = test_sample["emb"]
+        child_embs = test_sample["child_embs"]
 
-            if control_task:
-                binary_text_split = test_sample["sent"][0].split()
-                if test_sample["sent"][0] in split_index_for_sents:
-                    rand_part_ind = test_sample["sent"]
-                else:
-                    rand_part_ind = random.randint(0, len(binary_text_split) - 1)
-                test_sample["sent"][0] = rand_part_ind
-                left_text, right_text = " ".join(binary_text_split[:rand_part_ind]), " ".join(binary_text_split[rand_part_ind:])
-                left_emb = get_one_vec(left_text, lm_model, lm_tokenizer, emb_type=vec_type, cuda=torch.cuda.is_available())
-                right_emb = get_one_vec(right_text, lm_model, lm_tokenizer, emb_type=vec_type, cuda=torch.cuda.is_available())
-                child_embs = torch.stack([left_emb, right_emb]).squeeze(1)
-            else:
-                child_embs = torch.FloatTensor(binary_vec_data[test_sample["original_order"].item()])
-
-            #left_text, right_text = binary_text
-            #left_emb = get_one_vec(left_text, lm_model, lm_tokenizer, emb_type=vec_type, cuda=torch.cuda.is_available())
-            #right_emb = get_one_vec(right_text, lm_model, lm_tokenizer, emb_type=vec_type, cuda=torch.cuda.is_available())
-            #child_embs = torch.stack([left_emb, right_emb]).squeeze(1)
-            #pdb.set_trace()
-        else:
-            child_embs = torch.FloatTensor(get_child_embs(data_df, test_sample["full_sent"], test_sample["tree_ind"], test_sample["depth"])[0])
-        if len(child_embs) == 0 or len(child_embs) == 1:
-            continue
-        if (probe_type == "linear" or probe_type == "mlp") and len(child_embs) > 5:
-            continue
-
-        non_leaves += 1
+        #TODO: change arithmetic probes for batch
         if probe_type == "add":
             if torch.cuda.is_available:
                 composition_fn = composition_functions.torch_add
@@ -419,28 +443,31 @@ def test(model, probe_type: str, test_loader: torch.utils.data.DataLoader, binar
             else:
                 child_comp_emb = composition_fn(child_embs)
                 loss = loss_fn(actual_emb, child_comp_emb)
-                test_loss += loss.item()
+                sum_loss = torch.sum(loss)
+                test_loss += sum_loss.item()
 
-        if sent_cat not in test_loss_cats:
-            test_loss_cats[sent_cat] = loss.item()
-            freq_cats[sent_cat] = 1
-        else:
-            test_loss_cats[sent_cat] += loss.item()
-            freq_cats[sent_cat] += 1
-        
-    return test_loss, test_loss_cats, freq_cats, non_leaves
+                if record_deviation:
+                    for i, sent in enumerate(test_sample["sent"]):
+                        deviations_from_expected["sent"] = loss[i]
+
+        for i, s_c in enumerate(sent_cat):
+            if s_c not in test_loss_cats:
+                test_loss_cats[s_c] = loss[i].item()
+                freq_cats[s_c] = 1
+            else:
+                test_loss_cats[s_c] += loss[i].item()
+                freq_cats[s_c] += 1
+    
+    return test_loss, test_loss_cats, freq_cats, deviations_from_expected
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process treebank files for subsentences and return records including BERT embeddings, tree types, and sentence positions.")
-    parser.add_argument("probe_type", help="probe type (predict parent vec from child vecs)", choices=["add", "mult", "w1", "w2", "linear", "mlp", "tpdn", "oracle"])
+    parser.add_argument("probe_type", help="probe type (predict parent vec from child vecs)", choices=["add", "mult", "w1", "w2", "linear", "mlp", "tpdn", "oracle", "affine"])
     parser.add_argument("--emb_type", help="type of embedding to approximate", choices=["cls", "avg"], default="cls")
     parser.add_argument("--full", help="use the full treebank (default only 10%)", action="store_true")
     parser.add_argument("--use_binary", help="use binary parse trees (default is n-ary trees)", action="store_true")
-    parser.add_argument("--decomp", help="train decompositional probes instead (default is compositional)", action="store_true")
     parser.add_argument("--use_control_task", help="evaluate probe on the control task (default is on the true task)", action="store_true")
     args = parser.parse_args()
     vec_type = "CLS" if args.emb_type == "cls" else "avg"
 
-    if args.decomp:
-        raise NotImplementedError
     fit_composition(args.probe_type, vec_type=vec_type, full=args.full, binary_trees=args.use_binary, control_task=args.use_control_task)
