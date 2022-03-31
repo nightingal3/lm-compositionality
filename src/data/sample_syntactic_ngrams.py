@@ -4,8 +4,11 @@ import pdb
 from nltk import Tree
 import os
 from time import perf_counter
+from typing import List
 from stanfordcorenlp import StanfordCoreNLP
 import math
+import random
+import pickle
 syntactic_ngram_path = "/projects/tir5/users/mengyan3/syntactic-ngrams/eng-1M" # read from /tmp
 CORENLP_INSTALL_PATH = "/home/mengyan3/stanford-corenlp-4.4.0"
 nlp = StanfordCoreNLP(CORENLP_INSTALL_PATH)
@@ -14,36 +17,35 @@ idioms = set(pd.read_csv("./data/idioms/eng.csv")["idiom"])
 CLAUSES = ["S", "SBAR", "SBARQ", "SINV", "SQ"]
 
 def read_gzip_freqonly(gzip_dir: str, arc_type: str = "biarcs"):
+    accumulated = 0
     ngrams = []
     texts = []
     freqs = []
     is_idiom = []
-    i = 0
     for filename in os.listdir(gzip_dir):
         if not filename.endswith(".gz") or not arc_type in filename.split("."):
             continue
         gzip_path = os.path.join(gzip_dir, filename)
         with gzip.open(gzip_path, "rt") as f:
-            for line in enumerate(f):
-                i += 1
-                line_split = line.split("\t")
-                if i % 100000 == 0:
-                    print(i)
-                if i % 10000000 == 0: # dump the lists every so often
-                    with gzip.open("./projects/tir5/users/mengyan3/syntactic-ngrams/freqs/freqs_eng_1M.gz", "at") as f:
-                        f.write(f"syntactic_ngram,text,freq,is_idiom")
+            for line in f:
+                accumulated += 1
+                split_line = line.split("\t")
+                if accumulated % 100000 == 0:
+                    print(accumulated)
+                if accumulated % 10000000 == 0: # dump the lists every so often
+                    with gzip.open("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/freqs_eng_1M_fixed.gz", "at") as f:
+                        f.write(f"syntactic_ngram,text,freq,is_idiom\n")
                         for i, text in enumerate(texts):
-                            f.write(f"{ngrams[i]},{text},{freqs[i]},{is_idiom[i]}\n")
+                            f.write(f"{ngrams[i]}\t{text}\t{freqs[i]}\t{is_idiom[i]}\n")
 
-                    # save just freqs separately
-                    with open("")
-                    
+                    # save just freqs separately?
+
                     ngrams = []
                     texts = []
                     freqs = []
                     is_idiom = []
 
-                head_word, syntactic_ngram, total_count = line_split[0:3]
+                head_word, syntactic_ngram, total_count = split_line[0:3]
                 split_ngram = syntactic_ngram.split()
                 words_only = " ".join([w.split("/")[0] for w in split_ngram])
                 ngrams.append(syntactic_ngram)
@@ -51,10 +53,103 @@ def read_gzip_freqonly(gzip_dir: str, arc_type: str = "biarcs"):
                 freqs.append(math.log(int(total_count)))
                 is_idiom.append(words_only in idioms)
     
-    with gzip.open("./projects/tir5/users/mengyan3/syntactic-ngrams/freqs/freqs_eng_1M.gz", "at") as f:
+    with gzip.open("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/freqs_eng_1M_fixed.gz", "at") as f:
         f.write(f"syntactic_ngram,text,freq,is_idiom")
         for i, text in enumerate(texts):
-            f.write(f"{ngrams[i]},{text},{freqs[i]},{is_idiom[i]}\n")
+            f.write(f"{ngrams[i]}\t{text}\t{freqs[i]}\t{is_idiom[i]}\n")
+
+def get_buckets(concated_gzip_path: str) -> List:
+    big_lst = []
+    idioms = []
+    with gzip.open(concated_gzip_path, "rt") as f:
+        for i, line in enumerate(f):
+            if i % 1000000 == 0:
+                print(i)
+            if i == 0:
+                continue
+            #pdb.set_trace()
+            split_line = line.split("\t")
+            big_lst.append((i, float(split_line[2]), split_line[0]))
+            
+            if split_line[3] == "True\n":
+                idioms.append((i, float(split_line[2]), split_line[0]))
+
+    big_lst.sort(key=lambda x: x[1], reverse=True)
+    with open("/projects/tir5/users/mengyan3/syntactic-ngrams/big_lst.p", "wb") as f:
+        pickle.dump(big_lst, f)
+    pdb.set_trace()
+    tenth = len(big_lst) // 10
+    samples = []
+    for i in range(0, 10):
+        lst_slice = big_lst[i * tenth : (i + 1) * tenth]
+        sample = random.sample(lst_slice, 1000)
+        samples.extend(sample)
+    samples.extend(idioms)
+    return samples
+
+def get_binparse_from_samples(samples: List):
+    texts = []
+    tree_types = []
+    is_idiom = []
+    freq = []
+    texts_left = []
+    texts_right = []
+    for s in samples:
+        ngram = s[0]
+        split_ngram = syntactic_ngram.split()
+        text = []
+        pos_lst = []
+        head_inds = []
+        tree_branches = []
+        skip_ngram = False
+
+        if len(split_ngram) < 2:
+            continue
+        for ngram in split_ngram:
+            ngram_parts = ngram.split("/")
+            if len(ngram_parts) != 4:
+                skip_ngram = True
+                break
+            word, pos, dep_tag, head_ind = ngram_parts[0], ngram_parts[1], ngram_parts[2], ngram_parts[3]
+            text.append(word)
+            pos_lst.append(pos)
+            head_inds.append(int(head_ind))
+
+        if (len(head_inds) != 0 and max(head_inds) >= 2) and not skip_ngram: # at least binary
+            try:
+                all_words = " ".join(text)
+                if all_words in idioms:
+                    is_idiom.append(True)
+                else:
+                    is_idiom.append(False)
+                tree_str = nlp.parse(all_words)
+                tree = Tree.fromstring(tree_str)
+                tree.chomsky_normal_form()
+                ind = 0
+                tree_type = None
+                l_text = None
+                r_text = None
+
+                if len(tree[0]) == 2:
+                    parent_tree = tree[0]
+                    tree_l = tree[0][0]
+                    tree_r = tree[0][1]
+                    l_text = " ".join(tree_l.leaves())
+                    r_text = " ".join(tree_r.leaves())
+                    tree_type = parent_tree.productions()[0]
+                elif len(tree[0]) == 1:
+                    parent_tree = tree[0][0]
+                    tree_l = tree[0][0][0]
+                    tree_r = tree[0][0][1]
+                    l_text = " ".join(tree_l.leaves())
+                    r_text = " ".join(tree_r.leaves())
+                    tree_type = parent_tree.productions()[0]
+        
+                texts.append(all_words)
+                tree_types.append(tree_type)
+                freq.append(int(total_count))
+            except:
+                continue
 
 def read_gzip(gzip_dir: str, arc_type: str = "biarcs"):
     texts = []
@@ -180,5 +275,8 @@ def sample_phrases(num_phrases: int):
     raise NotImplementedError
 
 if __name__ == "__main__":
-    read_gzip_freqonly(syntactic_ngram_path, "biarcs")
+    #read_gzip_freqonly(syntactic_ngram_path, "biarcs")
+    samples = get_buckets("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/freqs_eng_1M_fixed.gz")
+    with open("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/sampled-ngrams.p", "wb") as f:
+        pickle.dump(samples, f)
     nlp.close()
