@@ -54,7 +54,7 @@ def read_gzip_freqonly(gzip_dir: str, arc_type: str = "biarcs"):
                 is_idiom.append(words_only in idioms)
     
     with gzip.open("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/freqs_eng_1M_fixed.gz", "at") as f:
-        f.write(f"syntactic_ngram,text,freq,is_idiom")
+        f.write(f"syntactic_ngram\ttext\tfreq\tis_idiom\n")
         for i, text in enumerate(texts):
             f.write(f"{ngrams[i]}\t{text}\t{freqs[i]}\t{is_idiom[i]}\n")
 
@@ -67,17 +67,26 @@ def get_buckets(concated_gzip_path: str) -> List:
                 print(i)
             if i == 0:
                 continue
+            if i <= 550000000:
+                continue
+            if i == 550000000 * 2:
+                break
+            if "syntactic_ngram,text,freq,is_idiom\n" in line:
+                continue
             #pdb.set_trace()
             split_line = line.split("\t")
-            big_lst.append((i, float(split_line[2]), split_line[0]))
-            
+            try:
+                big_lst.append((i, float(split_line[2]), split_line[0]))
+            except:
+                print(split_line)
+                continue
             if split_line[3] == "True\n":
                 idioms.append((i, float(split_line[2]), split_line[0]))
 
     big_lst.sort(key=lambda x: x[1], reverse=True)
-    with open("/projects/tir5/users/mengyan3/syntactic-ngrams/big_lst.p", "wb") as f:
+    with open("/projects/tir5/users/mengyan3/syntactic-ngrams/big_lst_1.p", "wb") as f:
         pickle.dump(big_lst, f)
-    pdb.set_trace()
+    #pdb.set_trace()
     tenth = len(big_lst) // 10
     samples = []
     for i in range(0, 10):
@@ -90,13 +99,14 @@ def get_buckets(concated_gzip_path: str) -> List:
 def get_binparse_from_samples(samples: List):
     texts = []
     tree_types = []
+    ngrams = []
     is_idiom = []
     freq = []
     texts_left = []
     texts_right = []
     for s in samples:
-        ngram = s[0]
-        split_ngram = syntactic_ngram.split()
+        ngram = s[2]
+        split_ngram = ngram.split()
         text = []
         pos_lst = []
         head_inds = []
@@ -118,6 +128,7 @@ def get_binparse_from_samples(samples: List):
         if (len(head_inds) != 0 and max(head_inds) >= 2) and not skip_ngram: # at least binary
             try:
                 all_words = " ".join(text)
+                print(all_words)
                 if all_words in idioms:
                     is_idiom.append(True)
                 else:
@@ -146,10 +157,18 @@ def get_binparse_from_samples(samples: List):
                     tree_type = parent_tree.productions()[0]
         
                 texts.append(all_words)
+                ngrams.append(split_ngram)
                 tree_types.append(tree_type)
-                freq.append(int(total_count))
+                freq.append(s[1])
+                texts_left.append(l_text)
+                texts_right.append(r_text)
             except:
                 continue
+    pdb.set_trace()
+    df = pd.DataFrame({"text": texts, "ngram": ngrams, "left": texts_left, "right": texts_right, "log_freq": freq})
+    df.to_csv("data/human_experiments/sample_part_1.csv", index=False)
+    return df
+    
 
 def read_gzip(gzip_dir: str, arc_type: str = "biarcs"):
     texts = []
@@ -276,7 +295,9 @@ def sample_phrases(num_phrases: int):
 
 if __name__ == "__main__":
     #read_gzip_freqonly(syntactic_ngram_path, "biarcs")
-    samples = get_buckets("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/freqs_eng_1M_fixed.gz")
-    with open("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/sampled-ngrams.p", "wb") as f:
-        pickle.dump(samples, f)
+    #samples = get_buckets("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/freqs_eng_1M_fixed.gz")
+    #with open("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/sampled-ngrams.p", "wb") as f:
+        #pickle.dump(samples, f)
+    ngram_samples = pickle.load(open("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/sampled-ngrams.p", "rb"))
+    get_binparse_from_samples(ngram_samples) 
     nlp.close()

@@ -25,9 +25,10 @@ from src.models.get_vecs import model_init
 
 MAX_LENGTH = 123 # have to determine this manually
 
-NULL_VALUES = ["0", "NIL", "*", "*u*", "*ich*", "*exp*", "*rnr*", "*ppa*"] + [f"*t*-{i}" for i in range(1, 10)] + [f"*-{i}" for i in range(1, 10)]
+NULL_VALUES = ["0", "NIL", "*", "*u*", "*ich*", "*exp*", "*rnr*", "*ppa*", "*?*", "-lrb-", "-rrb-"] + [f"*t*-{i}" for i in range(1, 1000)] + [f"*-{i}" for i in range(1, 1000)] + [f"*exp*-{i}" for i in range(1, 1000)] + [f"*ich*-{i}" for i in range(1, 1000)] + [f"*rnr*-{i}" for i in range(1, 1000)] + [f"*ppa*-{i}" for i in range(1, 1000)]
+NULL_VALUES = set(NULL_VALUES)
 
-def get_full_sents(selected_files):
+def get_full_sents(selected_files, treebank):
   sents = []
 
   for i in range(len(selected_files)):
@@ -56,7 +57,7 @@ def get_subtree_strings(tree: nltk.tree.Tree, return_tree_type: bool = False) ->
       is_leaf = len(leaves) == 1
       if return_tree_type:
         tree_type = str(tree[postn].productions()[0])
-        binary_tree_type = str(copy[postn].productions()[0])
+        binary_tree_type = str(copy.productions()[0])
         if is_leaf: 
           tree_type = tree_type[:tree_type.index("->") - 1]
       if is_leaf:
@@ -103,12 +104,12 @@ def get_subtree_strings_flat(tree: nltk.tree.Tree) -> List:
     
   return list(strings)
 
-def get_df_from_full_sentences(selected_files) -> Tuple[pd.DataFrame, int]:
+def get_df_from_full_sentences(selected_files, treebank_obj) -> Tuple[pd.DataFrame, int]:
   MAX_LENGTH = 0
   NER = spacy.load("en_core_web_sm")
   idioms = set(pd.read_csv("./data/idioms/eng.csv")["idiom"])
 
-  all_sentences = get_full_sents(selected_files)
+  all_sentences = get_full_sents(selected_files, treebank_obj)
   sentence_col = []
   subsentence_col = []
   sublength_col = []
@@ -165,25 +166,27 @@ def get_df_from_full_sentences(selected_files) -> Tuple[pd.DataFrame, int]:
 def get_bert_embeddings(dataloader, comparison_type: str = "CLS", cuda: bool = False):
   embeddings = None
   i = 0
-  for batch in dataloader:
-    print(f"predicting batch {i}", "out of", len(dataloader))
-    i += 1
-    b_input_ids, b_attn_masks = batch
-    outputs = model(b_input_ids, token_type_ids=None, attention_mask=b_attn_masks)
-    if comparison_type == "CLS":
-      embedding = outputs[0][:,0,:].detach().cpu().numpy()
-    elif comparison_type == "avg":
-      token_embeddings = outputs["last_hidden_state"]
-      embedding = (token_embeddings.sum(axis=1) / b_attn_masks.sum(axis=-1).unsqueeze(-1)).detach().cpu().numpy()
-    elif comparison_type == "max":
-      token_embeddings = outputs["last_hidden_state"]
-      embedding, _ = torch.max((token_embeddings * b_attn_masks.unsqueeze(-1)), axis=1)
-      embedding = embedding.detach().cpu().numpy()
-    assert embedding.shape[0] == len(b_input_ids) and embedding.shape[1] == 768
-    if embeddings is None:
-      embeddings = embedding
-    else:
-      embeddings = np.vstack((embeddings, embedding))
+  with torch.no_grad():
+    for batch in dataloader:
+      print(f"predicting batch {i}", "out of", len(dataloader))
+      i += 1
+      b_input_ids, b_attn_masks = batch
+      outputs = model(b_input_ids, token_type_ids=None, attention_mask=b_attn_masks)
+      if comparison_type == "CLS":
+        embedding = outputs[0][:,0,:].detach().cpu().numpy()
+      elif comparison_type == "avg":
+        token_embeddings = outputs["last_hidden_state"]
+        token_embeddings[b_attn_masks == 0] = 0 # get rid of padding vectors 
+        embedding = (token_embeddings.sum(axis=1) / b_attn_masks.sum(axis=1).unsqueeze(-1)).detach().cpu().numpy()
+      elif comparison_type == "max":
+        token_embeddings = outputs["last_hidden_state"]
+        embedding, _ = torch.max((token_embeddings * b_attn_masks.unsqueeze(-1)), axis=1)
+        embedding = embedding.detach().cpu().numpy()
+      assert embedding.shape[0] == len(b_input_ids) and embedding.shape[1] == 768
+      if embeddings is None:
+        embeddings = embedding
+      else:
+        embeddings = np.vstack((embeddings, embedding))
     #pdb.set_trace()
     #embeddings.append(embedding)
   
@@ -229,12 +232,14 @@ if __name__ == "__main__":
     parser.add_argument("--cuda", help="use gpu", action="store_true")
     args = parser.parse_args()
             
-    if args.treebank_path:
-      treebank = CategorizedBracketParseCorpusReader(r"/projects/tir1/corpora/treebank_3/parsed/mrg/", r'(wsj/\d\d/wsj_\d\d\d\d.mrg|brown/c[a-z]/c[a-z])\d\d.mrg', cat_file='allcats.txt', tagset='wsj')
+    if args.treebank_path: # brown: 192 files, wsj: 2313
+      treebank = CategorizedBracketParseCorpusReader(r"/projects/tir1/corpora/treebank_3/parsed/mrg/", r'(wsj/\d\d/wsj_\d\d\d\d|brown/c[a-z]/c[a-z]\d\d).mrg', cat_file='allcats.txt', tagset='wsj')
     else:
       treebank = nltk.corpus.treebank
     selected_files = [fileid for i, fileid in enumerate(list(treebank.fileids())) if (i % 10) == int(args.selection_num)]
-    df, _ = get_df_from_full_sentences(selected_files)
+    df, _ = get_df_from_full_sentences(selected_files, treebank)
+    df = df.loc[df["sublength"] >= 2] # drop trivial trees
+
     model, tokenizer = model_init(args.model, cuda=args.cuda)
     test_samples = df["sent"].tolist()
     encoded_data_val = tokenizer(test_samples, 

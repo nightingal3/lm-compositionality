@@ -13,17 +13,17 @@ training_curves_path_mlp = "./data/mlp_CLS_results/binary_trees/"
 training_curves_path_add = "./data/add_CLS_results/binary_trees/"
 
 def plot_training_curves(out_filename: str = "training_curves_sample.png") -> None:
-    x = np.array([0.01, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9])
+    x = np.array([0.1, 0.5, 1, 2, 5, 10, 20, 50, 100])
     
     data_increments = []
     probe_types = []
     score = []
-    lin_scores = np.zeros((10, 11))
-    mlp_scores = np.zeros((10, 11))
-    aff_scores = np.zeros((10, 11))
-    add_scores = np.zeros((10, 11))
-    w1_scores = np.zeros((10, 11))
-    w2_scores = np.zeros((10, 11))
+    lin_scores = np.zeros((10, 9))
+    mlp_scores = np.zeros((10, 9))
+    aff_scores = np.zeros((10, 9))
+    add_scores = np.zeros((10, 9))
+    w1_scores = np.zeros((10, 9))
+    w2_scores = np.zeros((10, 9))
 
     for i in range(10):
         path_lin = os.path.join(training_curves_path_lin, f"model_{i}_losses.p")
@@ -33,9 +33,9 @@ def plot_training_curves(out_filename: str = "training_curves_sample.png") -> No
         y_lin_i = pickle.load(open(path_lin, "rb"))
         y_mlp_i = pickle.load(open(path_mlp, "rb"))
         y_aff_i = pickle.load(open(path_aff, "rb"))
-        y_add_i = [0.064906] * 11
-        y_w1_i = [0.12695] * 11
-        y_w2_i = [0.069806] * 11
+        y_add_i = [0.064906] * 9
+        y_w1_i = [0.12695] * 9
+        y_w2_i = [0.069806] * 9
 
         y_lin_i = [1 - item for item in y_lin_i]
         y_mlp_i = [1 - item for item in y_mlp_i]
@@ -51,7 +51,7 @@ def plot_training_curves(out_filename: str = "training_curves_sample.png") -> No
         w1_scores[i, :] = y_w1_i
         w2_scores[i, :] = y_w2_i
 
-        for j in range(len(y_add_i)):
+        for j in range(len(x)):
             data_increments.extend([j] * 6)
             probe_types.append("add")
             score.append(y_add_i[j])
@@ -66,7 +66,10 @@ def plot_training_curves(out_filename: str = "training_curves_sample.png") -> No
             probe_types.append("w2")
             score.append(y_w2_i[j])
     data_df = pd.DataFrame({"percent_dataset": data_increments, "probe_types": probe_types, "cos_score": score})
-    sns.lineplot(data=data_df, x="percent_dataset", y="cos_score", hue="probe_types")
+    sns.lineplot(data=data_df, x="percent_dataset", y="cos_score", hue="probe_types", marker="o")
+    ax = plt.gca()
+    ax.xaxis.set_ticks(range(len(x)))
+    ax.xaxis.set_ticklabels([0.1, 0.5, 1, 2, 5, 10, 20, 50, 100])
     plt.savefig(out_filename)
 
     y_lin = lin_scores.mean(axis=0)

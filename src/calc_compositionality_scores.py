@@ -10,15 +10,17 @@ from nltk import Tree
 from src.composition_functions import *
 from src.models.get_vecs import get_one_vec, model_init
 
+NULL_VALUES = ["0", "NIL", "*", "*u*", "*ich*", "*exp*", "*rnr*", "*ppa*", "*?*", "-lrb-", "-rrb-"] + [f"*t*-{i}" for i in range(1, 1000)] + [f"*-{i}" for i in range(1, 1000)] + [f"*exp*-{i}" for i in range(1, 1000)] + [f"*ich*-{i}" for i in range(1, 1000)] + [f"*rnr*-{i}" for i in range(1, 1000)] + [f"*ppa*-{i}" for i in range(1, 1000)]
+NULL_VALUES = set(NULL_VALUES)
 
 # Gets the cosine distance between a node and some composition of its children.
-def compare_node_to_children(tree_data: pd.DataFrame, vecs: np.ndarray, composition_fn: Callable, add_proto_embs: bool = False, vec_type: str = "cls") -> List:
-    lm_model, lm_tokenizer = model_init("bert", cuda=torch.cuda.is_available())
+def compare_node_to_children(tree_data: pd.DataFrame, vecs: np.ndarray, composition_fn: Callable, add_proto_embs: bool = False, vec_type: str = "cls", model_type: str = "bert") -> List:
+    lm_model, lm_tokenizer = model_init(model_type, cuda=torch.cuda.is_available())
     lm_model.eval()
-    cosine_distance_to_children = []
-    all_child_ids = []
+    cosine_distance_to_children = [] # deprecated
+    all_child_ids = [] # deprecated
     binary_child_text = []
-    all_child_embs = []
+    all_child_embs = [] # deprecated
     all_binary_child_embs = []
     binary_child_embs_mask = np.zeros((len(tree_data), 1))
     for i, row in enumerate(tree_data.to_dict(orient="records")):
@@ -28,32 +30,36 @@ def compare_node_to_children(tree_data: pd.DataFrame, vecs: np.ndarray, composit
         child_embs, child_ids = get_child_embs(tree_data, full_sent, tree_pos, depth)
 
         binary_split = get_children_binary_parse(tree_data, full_sent, binary_parse)
+
         if len(binary_split) == 2:
             left_text, right_text = binary_split
             left_emb = get_one_vec(left_text, lm_model, lm_tokenizer, emb_type=vec_type, cuda=torch.cuda.is_available())
             right_emb = get_one_vec(right_text, lm_model, lm_tokenizer, emb_type=vec_type, cuda=torch.cuda.is_available())
             binary_child_embs = torch.stack([left_emb, right_emb]).squeeze(1).unsqueeze(0).cpu().detach().numpy()
+
             all_binary_child_embs.append(binary_child_embs)
+            binary_child_text.append(binary_split)
         else:
             binary_child_embs = np.empty((1, 2, 768))
             all_binary_child_embs.append(binary_child_embs)
             binary_child_embs_mask[i] = 1
-        #child_embs = get_child_embs_separate(tree_data, full_sent, tree_pos, depth, vecs)
-        if len(child_embs) == 0 or len(child_embs) == 1:
-            cosine_distance_to_children.append(-1) # leaf node, or unary, mark with -1 to indicate no children
-            all_child_ids.append([])
             binary_child_text.append([])
-            all_child_embs.append(np.empty((1, 2, 768)))
-        else:
-            if add_proto_embs:
-                proto_emb = ast.literal_eval(row["proto_emb"])
-                child_embs = np.vstack([child_embs, np.array(proto_emb)])
+        #child_embs = get_child_embs_separate(tree_data, full_sent, tree_pos, depth, vecs)
+        # if len(child_embs) == 0 or len(child_embs) == 1:
+        #     cosine_distance_to_children.append(-1) # leaf node, or unary, mark with -1 to indicate no children
+        #     all_child_ids.append([])
+        #     binary_child_text.append([])
+        #     all_child_embs.append(np.empty((1, 2, 768)))
+        # else:
+        #     if add_proto_embs:
+        #         proto_emb = ast.literal_eval(row["proto_emb"])
+        #         child_embs = np.vstack([child_embs, np.array(proto_emb)])
                 
-            child_comp_emb = composition_fn(child_embs)
-            cosine_distance_to_children.append(cosine(child_comp_emb, parent_emb))
-            all_child_ids.append(child_ids)
-            binary_child_text.append(binary_split)
-            all_child_embs.append(child_embs)
+        #     child_comp_emb = composition_fn(child_embs)
+        #     cosine_distance_to_children.append(cosine(child_comp_emb, parent_emb))
+        #     all_child_ids.append(child_ids)
+        #     binary_child_text.append(binary_split)
+        #     all_child_embs.append(child_embs)
 
     all_binary_child_embs = np.concatenate(all_binary_child_embs, axis=0)
 
@@ -93,41 +99,41 @@ def get_children_binary_parse(tree_data: pd.DataFrame, full_sent: str, binary_pa
     if len(binary_tree) < 2:
         return []
     left, right = binary_tree[0], binary_tree[1]
-    l_text = " ".join(left.leaves())
-    r_text = " ".join(right.leaves())
+    l_text = " ".join([leaf for leaf in left.leaves() if leaf.lower() not in NULL_VALUES])
+    r_text = " ".join([leaf for leaf in right.leaves() if leaf.lower() not in NULL_VALUES])
+
+    if len(l_text) == 0 or len(r_text) == 0: # only null value in left or right branch
+        return []
+
     return l_text, r_text
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process treebank files for subsentences and return records including BERT embeddings, tree types, and sentence positions.")
+    parser.add_argument("--model", help="model type to examine", choices=["bert", "roberta", "deberta"], default="bert")
     parser.add_argument("-i", dest="selection_num", help="process number (split into 10)")
     parser.add_argument("--emb_type", help="embedding type to use", choices=["CLS", "avg", "max"], default="CLS")
     parser.add_argument("--full", help="use all treebank data", action="store_true")
-    parser.add_argument("--cuda", help="use gpu", action="store_true")
     parser.add_argument("--use_proto", help="compare to prototype embedding", action="store_true")
     args = parser.parse_args()
-    if args.cuda:
-        import cupy as np
-    else:
-        import numpy as np
 
     i, emb_type, treebank_full = args.selection_num, args.emb_type, args.full
-    df = pd.read_csv(f"./tree_data_{i}_{emb_type}_{treebank_full}.csv")
+    df = pd.read_csv(f"./tree_data_{args.model}_{i}_{emb_type}_{treebank_full}.csv")
 
     # Note: sent id is broken for now (not unique...)
     df["sent_id"] = f"P{i}_" + df["sent"].apply(hash).astype(str)
 
-    vecs = np.load(f"./data/embs/{emb_type}_{i}_full_{treebank_full}.npy")
+    vecs = np.load(f"./data/embs/{args.model}_{emb_type}_{i}_full_{treebank_full}.npy")
 
     if args.use_proto:
         df = pd.read_csv("./proto-dist-full.csv")
         vecs = np.load(f"./data/embs/CLS_all_full.npy")
 
-    dist_to_children, child_ids, binary_child_text, all_child_embs, all_binary_child_embs, binary_child_embs_mask = compare_node_to_children(df, vecs, add, add_proto_embs=args.use_proto, vec_type=args.emb_type)
-    df["dist_from_children"] = dist_to_children
-    df["child_ids"] = child_ids
+    dist_to_children, child_ids, binary_child_text, all_child_embs, all_binary_child_embs, binary_child_embs_mask = compare_node_to_children(df, vecs, add, add_proto_embs=args.use_proto, vec_type=args.emb_type, model_type=args.model)
+    #df["dist_from_children"] = dist_to_children
+    #df["child_ids"] = child_ids
 
     # save child embeddings to join to dataset
     # regular children as dict (due to varying lengths), binary children as ndarray
     df["binary_text"] = binary_child_text
-    np.savez(f"./data/binary_child_embs_{i}_{emb_type}.npz", child_embs=all_binary_child_embs, mask=binary_child_embs_mask)
-    df.to_csv(f"./data/tree_data_{i}_{emb_type}_full_{treebank_full}_proto_{args.use_proto}.csv")
+    np.savez(f"./data/binary_child_embs_{args.model}_{i}_{emb_type}_full_{args.full}.npz", child_embs=all_binary_child_embs, mask=binary_child_embs_mask)
+    df.to_csv(f"./data/tree_data_{args.model}_{i}_{emb_type}_full_{treebank_full}_proto_{args.use_proto}.csv", index=False)
