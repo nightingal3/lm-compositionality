@@ -9,11 +9,27 @@ from stanfordcorenlp import StanfordCoreNLP
 import math
 import random
 import pickle
+import ast
+import heapq
+import sys
+from tqdm import tqdm
+from bisect import bisect_left
+
 syntactic_ngram_path = "/projects/tir5/users/mengyan3/syntactic-ngrams/eng-1M" # read from /tmp
 CORENLP_INSTALL_PATH = "/home/mengyan3/stanford-corenlp-4.4.0"
 nlp = StanfordCoreNLP(CORENLP_INSTALL_PATH)
 
-idioms = set(pd.read_csv("./data/idioms/eng.csv")["idiom"])
+# idioms = set(pd.read_csv("./data/idioms/eng_all.csv")["idiom"])
+idiom_df = pd.read_csv("./data/human_experiments/idioms_filtered.csv")
+idioms = set(idiom_df.loc[(idiom_df["exclude"] != 1) & (idiom_df["pos_wrong"] != 1)]["text"])
+
+#bigrams_1 = pd.read_csv("./data/ijcnlp_compositionality_data/freq.csv")
+#bigrams_2 = pd.read_csv("./data/ramisch2016/compounds-lists/compounds-list-en.tsv", sep="\t")
+#all_bigrams = set(list(bigrams_1["compound"])) | set(list(bigrams_2["compound"]))
+
+all_bigrams_df = pd.read_csv("./data/human_experiments/bigrams_filtered.csv")
+all_bigrams = set(all_bigrams_df.loc[(all_bigrams_df["exclude"] != 1) & (all_bigrams_df["pos_wrong"] != 1)]["text"])
+
 CLAUSES = ["S", "SBAR", "SBARQ", "SINV", "SQ"]
 
 def read_gzip_freqonly(gzip_dir: str, arc_type: str = "biarcs"):
@@ -30,11 +46,10 @@ def read_gzip_freqonly(gzip_dir: str, arc_type: str = "biarcs"):
             for line in f:
                 accumulated += 1
                 split_line = line.split("\t")
-                if accumulated % 100000 == 0:
-                    print(accumulated)
                 if accumulated % 10000000 == 0: # dump the lists every so often
-                    with gzip.open("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/freqs_eng_1M_fixed.gz", "at") as f:
-                        f.write(f"syntactic_ngram,text,freq,is_idiom\n")
+                    print(accumulated)
+                    with gzip.open("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/freqs_eng_1M_fixed_idioms_new.gz", "at") as f:
+                        f.write(f"syntactic_ngram\ttext\tfreq\tis_idiom\n")
                         for i, text in enumerate(texts):
                             f.write(f"{ngrams[i]}\t{text}\t{freqs[i]}\t{is_idiom[i]}\n")
 
@@ -51,9 +66,9 @@ def read_gzip_freqonly(gzip_dir: str, arc_type: str = "biarcs"):
                 ngrams.append(syntactic_ngram)
                 texts.append(words_only)
                 freqs.append(math.log(int(total_count)))
-                is_idiom.append(words_only in idioms)
+                is_idiom.append(words_only in idioms or words_only in all_bigrams)
     
-    with gzip.open("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/freqs_eng_1M_fixed.gz", "at") as f:
+    with gzip.open("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/freqs_eng_1M_fixed_idioms_new.gz", "at") as f:
         f.write(f"syntactic_ngram\ttext\tfreq\tis_idiom\n")
         for i, text in enumerate(texts):
             f.write(f"{ngrams[i]}\t{text}\t{freqs[i]}\t{is_idiom[i]}\n")
@@ -96,7 +111,7 @@ def get_buckets(concated_gzip_path: str) -> List:
     samples.extend(idioms)
     return samples
 
-def get_binparse_from_samples(samples: List):
+def get_binparse_from_samples(samples: List, ngram_ind: int = 2):
     texts = []
     tree_types = []
     ngrams = []
@@ -105,7 +120,7 @@ def get_binparse_from_samples(samples: List):
     texts_left = []
     texts_right = []
     for s in samples:
-        ngram = s[2]
+        ngram = s[ngram_ind]
         split_ngram = ngram.split()
         text = []
         pos_lst = []
@@ -164,11 +179,199 @@ def get_binparse_from_samples(samples: List):
                 texts_right.append(r_text)
             except:
                 continue
-    pdb.set_trace()
+
     df = pd.DataFrame({"text": texts, "ngram": ngrams, "left": texts_left, "right": texts_right, "log_freq": freq})
-    df.to_csv("data/human_experiments/sample_part_1.csv", index=False)
+    df = df.sort_values("log_freq", ascending=False).drop_duplicates("text")
+    df.to_csv("data/human_experiments/bigram_sample.csv", index=False)
+
     return df
+
+def parse_text(all_words):
+    tree_str = nlp.parse(all_words)
+    tree = Tree.fromstring(tree_str)
+    tree.chomsky_normal_form()
+    l_text = None
+    r_text = None
+
+    if len(tree[0]) == 2:
+        parent_tree = tree[0]
+        tree_l = tree[0][0]
+        tree_r = tree[0][1]
+        l_text = " ".join(tree_l.leaves())
+        r_text = " ".join(tree_r.leaves())
+        tree_type = parent_tree.productions()[0]
+    elif len(tree[0]) == 1:
+        parent_tree = tree[0][0]
+        tree_l = tree[0][0][0]
+        tree_r = tree[0][0][1]
+        l_text = " ".join(tree_l.leaves())
+        r_text = " ".join(tree_r.leaves())
+
+    return l_text, r_text
+
+def get_idioms(concated_gzip_path: str) -> List:
+    idiom_lst = []
+    with gzip.open(concated_gzip_path, "rt") as f:
+        for i, line in enumerate(f):
+            if i == 0:
+                continue
+            if i % 1000000 == 0:
+                print(i)  
+            split_line = line.split("\t")
+            split_ngram = split_line[0].split() 
+            words_only = " ".join([w.split("/")[0] for w in split_ngram])
+            if words_only in idioms or words_only in all_bigrams:
+                idiom_lst.append((i, float(split_line[2]), split_line[0]))
+        
+    return idiom_lst
+
+def sample_similar_to_idioms(idiom_df: pd.DataFrame, concated_gzip_path: str, k: int = 50):
+    ngrams = idiom_df["ngram"].tolist()
+    matching_patterns = {}
+    pos_freq = {}
+    pos_dep_freq = {}
+    for ngram in ngrams:
+        ngram_lst = ast.literal_eval(ngram)
+        pos_seq = [x.split("/")[1] for x in ngram_lst]
+        pos_dep_seq = [" ".join(x.split("/")[1:3]) for x in ngram_lst]
+
+        pos_str = " ".join(pos_seq)
+        if pos_str not in pos_freq:
+            pos_freq[pos_str] = 1
+        else:
+            pos_freq[pos_str] += 1
+
+        pos_dep_str = ",".join(pos_dep_seq)
+        if pos_dep_str not in pos_dep_freq:
+            pos_dep_freq[pos_dep_str] = 1
+        else:
+            pos_dep_freq[pos_dep_str] += 1
+        if pos_dep_str in matching_patterns:
+            matching_patterns[pos_dep_str].append(ngram)
+        else:
+            matching_patterns[pos_dep_str] = [ngram]
+
+    collected_phrases = {x: [] for x in ngrams}
+
+    with gzip.open(concated_gzip_path, "rt") as f:
+        for i, line in tqdm(enumerate(f)):
+            if i == 0:
+                continue
+            if i % 1000000 == 0:
+                print(i)  
+            if i % 100000000 == 0:
+                with open(f"./data/human_experiments/similar_sample_bigrams_{i}.p", "wb") as f:
+                    pickle.dump(collected_phrases, f)
+            split_line = line.split("\t")
+            if len(split_line) != 4:
+                continue
+            ngram = split_line[0].split()
+            ngram_key = str(ngram)
+            try:
+                pos_seq = [x.split("/")[1] for x in ngram]
+                pos_dep_seq = [" ".join(x.split("/")[1:3]) for x in ngram]
+                freq = float(split_line[2])
+            except:
+                continue
+
+            pos_str = " ".join(pos_seq)
+            pos_dep_str = ",".join(pos_dep_seq)
+
+            if pos_dep_str not in matching_patterns:
+                continue
+            eligible_idioms = matching_patterns[pos_dep_str] 
+
+            for idiom in eligible_idioms: 
+                idiom_freq = float(idiom_df.loc[idiom_df["ngram"] == idiom]["log_freq"])
+                freq_diff = abs(freq - idiom_freq)
+                heap_val = (-freq_diff, ngram_key, freq)
+                if len(collected_phrases[idiom]) < k or freq_diff < sys.float_info.epsilon:
+                    heapq.heappush(collected_phrases[idiom], heap_val)
+                else:
+                    heapq.heappushpop(collected_phrases[idiom], heap_val)
+
+    return collected_phrases
+
+def sample_similar_to_idioms_fast(idiom_df: pd.DataFrame, concated_gzip_path: str, k: int = 50):
+    idiom_ngrams = idiom_df["ngram"].tolist()
+    freq_to_idiom = {}
+    freqs_by_pos = {}
+    for idiom in idiom_ngrams:
+        ngram_lst = ast.literal_eval(idiom)
+        pos_dep_str = ",".join([" ".join(x.split("/")[1:3]) for x in ngram_lst])
+        
+        idiom_freq = float(idiom_df.loc[idiom_df["ngram"] == idiom]["log_freq"])
+        if pos_dep_str not in freq_to_idiom:
+            freq_to_idiom[pos_dep_str] = {}
+
+        if idiom_freq not in freq_to_idiom[pos_dep_str]:
+            freq_to_idiom[pos_dep_str][idiom_freq] = [idiom]
+        else:
+            freq_to_idiom[pos_dep_str][idiom_freq].append(idiom)
+
+        if pos_dep_str not in freqs_by_pos:
+            freqs_by_pos[pos_dep_str] = [idiom_freq]
+        else:
+            freqs_by_pos[pos_dep_str].append(idiom_freq)
+    for pos in freqs_by_pos:
+        freqs_by_pos[pos] = sorted(set(freqs_by_pos[pos]))
     
+    collected_phrases = {x: [] for x in idiom_ngrams}
+
+    with gzip.open(concated_gzip_path, "rt") as f:
+        for i, line in tqdm(enumerate(f)):
+            if i == 0:
+                continue
+            if i % 100000000 == 0:
+                with open(f"./data/human_experiments/similar_sample_bigrams_new_{i}.p", "wb") as f:
+                    pickle.dump(collected_phrases, f)
+            split_line = line.split("\t")
+            if len(split_line) != 4:
+                continue
+            ngram = split_line[0].split()
+            ngram_key = str(ngram)
+            try:
+                pos_dep_seq = [" ".join(x.split("/")[1:3]) for x in ngram]
+                freq = float(split_line[2])
+            except:
+                continue
+
+            pos_dep_str = ",".join(pos_dep_seq)
+            if pos_dep_str not in freqs_by_pos:
+                continue
+
+            ind = bisect_left(freqs_by_pos[pos_dep_str], freq)
+
+            for i in range(0, ind): # smaller freq
+                idiom_freq = freqs_by_pos[pos_dep_str][i]
+                # change this to handle multiple idioms with same freq
+                idiom_key = freq_to_idiom[pos_dep_str][idiom_freq]
+                freq_diff = abs(idiom_freq - freq)
+                heap_val = (-freq_diff, ngram_key, freq)
+                for curr_idiom_key in idiom_key:
+                    if len(collected_phrases[curr_idiom_key]) < k or freq_diff < sys.float_info.epsilon:
+                        heapq.heappush(collected_phrases[curr_idiom_key], heap_val)
+                    else:
+                        ret_val = heapq.heappushpop(collected_phrases[curr_idiom_key], heap_val)
+                        if ret_val == heap_val:
+                            break
+
+            for i in range(ind, len(freqs_by_pos[pos_dep_str])): # larger freq
+                idiom_freq = freqs_by_pos[pos_dep_str][i]
+                # change this to handle multiple idioms with same freq
+                idiom_key = freq_to_idiom[pos_dep_str][idiom_freq]
+                freq_diff = abs(idiom_freq - freq)
+                heap_val = (-freq_diff, ngram_key, freq)
+                for curr_idiom_key in idiom_key:
+                    if len(collected_phrases[curr_idiom_key]) < k or freq_diff < sys.float_info.epsilon:
+                        heapq.heappush(collected_phrases[curr_idiom_key], heap_val)
+                    else:
+                        ret_val = heapq.heappushpop(collected_phrases[curr_idiom_key], heap_val)
+                        if ret_val == heap_val:
+                            break
+    
+    return collected_phrases
+        
 
 def read_gzip(gzip_dir: str, arc_type: str = "biarcs"):
     texts = []
@@ -294,10 +497,23 @@ def sample_phrases(num_phrases: int):
     raise NotImplementedError
 
 if __name__ == "__main__":
-    #read_gzip_freqonly(syntactic_ngram_path, "biarcs")
+    idiom_gzip = "/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/freqs_eng_1M_fixed_idioms_new.gz"
+    bigram_gzip = "/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/freqs_eng_1M_fixed_bigrams.gz"
+    idiom_df = pd.read_csv("./data/human_experiments/idiom_sample.csv")
+    bigram_df = pd.read_csv("./data/human_experiments/bigram_sample.csv")
+    collected_idiom_sample = sample_similar_to_idioms_fast(bigram_df, bigram_gzip)
+    with open("./data/human_experiments/similar_sample_bigrams_new.p", "wb") as f:
+        pickle.dump(collected_idiom_sample, f)
+    assert False
+    #read_gzip_freqonly(syntactic_ngram_path, "arcs") 
+    #assert False
     #samples = get_buckets("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/freqs_eng_1M_fixed.gz")
     #with open("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/sampled-ngrams.p", "wb") as f:
         #pickle.dump(samples, f)
-    ngram_samples = pickle.load(open("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/sampled-ngrams.p", "rb"))
+    samples = get_idioms("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/freqs_eng_1M_fixed_bigrams.gz")
+    with open("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/sampled-bigrams.p", "wb") as f:
+        pickle.dump(samples, f)
+    #assert False
+    ngram_samples = pickle.load(open("/projects/tir5/users/mengyan3/syntactic-ngrams/freqs/sampled-bigrams.p", "rb"))
     get_binparse_from_samples(ngram_samples) 
     nlp.close()
