@@ -1,4 +1,4 @@
-from transformers import AutoModelForCausalLM, AutoTokenizer, GPT2Tokenizer, GPT2LMHeadModel, GPTNeoForCausalLM, OpenAIGPTTokenizer, OpenAIGPTLMHeadModel, BertTokenizer, BertModel, RobertaModel, RobertaTokenizer, DebertaModel, DebertaTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, GPT2Tokenizer, GPT2Model, GPTNeoForCausalLM, OpenAIGPTTokenizer, OpenAIGPTLMHeadModel, BertTokenizer, BertModel, RobertaModel, RobertaTokenizer, DebertaModel, DebertaTokenizer
 from typing import List
 import pdb
 import torch
@@ -20,10 +20,12 @@ def model_init(model_string: str, cuda: bool, output_attentions=False, fast=Fals
     elif model_string.startswith("gpt2"):
         if fast:
             tokenizer = AutoTokenizer.from_pretrained(model_string)
-            model = GPT2LMHeadModel.from_pretrained(model_string)
+            model = GPT2Model.from_pretrained(model_string, output_hidden_states=True)
         else:
             tokenizer = GPT2Tokenizer.from_pretrained(model_string) 
-            model = GPT2LMHeadModel.from_pretrained(model_string)
+            model = GPT2Model.from_pretrained(model_string, output_hidden_states=True)
+
+        tokenizer.pad_token = tokenizer.eos_token
     elif model_string.startswith("EleutherAI/gpt-neo"):
         tokenizer = GPT2Tokenizer.from_pretrained(model_string, output_attentions=output_attentions)
         model = GPTNeoForCausalLM.from_pretrained(model_string, output_attentions=output_attentions)
@@ -35,17 +37,36 @@ def model_init(model_string: str, cuda: bool, output_attentions=False, fast=Fals
         model.to('cuda')
     return model, tokenizer
 
-def get_one_vec(phrase, model, tokenizer, emb_type: str = "CLS", cuda: bool = False):
+def get_one_vec(phrase, model, tokenizer, emb_type: str = "CLS", model_type: str = "encoder", cuda: bool = False, layer: int = 12):
+    if model_type == "gpt":
+        phrase = phrase + " " + tokenizer.eos_token
+
     encoded_phrase = tokenizer.encode(phrase, return_tensors="pt")
     if cuda:
         encoded_phrase = encoded_phrase.to("cuda")
 
     outputs = model(encoded_phrase)
     if emb_type == "CLS":
-        emb_phrase = outputs[0][:, 0, :]
+        if layer == 12:
+            if model_type == "encoder":
+                emb_phrase = outputs[0][:, 0, :]
+            else:
+                emb_phrase = outputs[0][:, -1, :]
+        else:
+            hidden = outputs["hidden_states"][layer]
+            if model_type == "encoder":
+                emb_phrase = hidden[:, 0, :]
+            else:
+                emb_phrase = hidden[:, -1, :]
+
     elif emb_type == "avg":
-        token_embeddings = outputs["last_hidden_state"]
-        emb_phrase = token_embeddings.squeeze(0).mean(dim=0)
+        if layer == 12:
+            token_embeddings = outputs["last_hidden_state"]
+            emb_phrase = token_embeddings.squeeze(0).mean(dim=0)
+        else:
+            token_embeddings = outputs["hidden_states"][layer]
+            emb_phrase = token_embeddings.squeeze(0).mean(dim=0)
+
 
     return emb_phrase
     

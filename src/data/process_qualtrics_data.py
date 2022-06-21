@@ -8,6 +8,7 @@ from statsmodels.stats import inter_rater as irr
 from statsmodels.stats.multitest import multipletests
 from itertools import combinations
 import ast
+from typing import List
 
 from src.models.get_vecs import model_init, get_one_vec
 from src.models.fit_composition_functions import AffineRegression
@@ -192,6 +193,7 @@ def find_other_correlations(human_answers, model_answers, idiom_datapath, questi
 
     human_scores, model_scores = [], []
     freqs = []
+    word_lens = []
     for phrase in human_answers:
         if phrase in skip_phrases:
             continue
@@ -199,11 +201,14 @@ def find_other_correlations(human_answers, model_answers, idiom_datapath, questi
         model_comp_score = model_answers[phrase]
         human_scores.append(human_comp_score)
         model_scores.append(model_comp_score)
+        word_lens.append(len(phrase.split()))
+
         sel_row = idiom_df.loc[idiom_df["phrase_words"] == phrase]
         if len(sel_row) == 0:
             sel_row = noncomp_df.loc[noncomp_df["text"] == phrase]
         freq = sel_row["freq"] if "freq" in sel_row else sel_row["log_freq"]
-        if len(freq) > 1:
+
+        if len(freq) > 1: 
             try:
                 if "freq" in sel_row:
                     freq = sel_row.loc[sel_row["pos_wrong"] != 1.0]["freq"]  
@@ -224,10 +229,18 @@ def find_other_correlations(human_answers, model_answers, idiom_datapath, questi
             # should be the same freq in this case
             freqs.append(freq.iloc[0].item())
     print("human/model frequency corr")
+    r_human_freq = spearmanr(human_scores, freqs)
+    r_model_freq = spearmanr(model_scores, freqs)
+    print(r_human_freq)
+    print(r_model_freq)
 
-    print(spearmanr(human_scores, freqs))
-    print(spearmanr(model_scores, freqs))
+    print("human/model len corr")
+    r_human_len = spearmanr(human_scores, word_lens)
+    r_model_len = spearmanr(model_scores, word_lens)
     
+    human_corrs = {"length": r_human_len[1], "frequency": r_human_freq[1]}
+    model_corrs = {"length": r_model_len[1], "frequency": r_model_freq[1]}
+    return human_corrs, model_corrs
 
 
 def subphrase_test(human_answers_l_r, model_answers_l_r):
@@ -235,6 +248,8 @@ def subphrase_test(human_answers_l_r, model_answers_l_r):
     correct = 0
     left_closer = 0
     right_closer = 0
+    correct_lst = []
+    wrong_lst = []
     for phrase in human_answers_l_r:
         if human_answers_l_r[phrase]["l"] == human_answers_l_r[phrase]["r"]:
             continue
@@ -254,8 +269,69 @@ def subphrase_test(human_answers_l_r, model_answers_l_r):
                 right_closer += 1
             is_correct = model_answers_l_r[phrase]["l"] < model_answers_l_r[phrase]["r"]
             correct += int(is_correct)
+        
+        if is_correct:
+            correct_lst.append(phrase)
+        else:
+            wrong_lst.append(phrase)
 
-    return correct/total_num
+    return correct/total_num, correct_lst, wrong_lst
+
+def log_subphrase_test(questions_file: str, idiom_datapath: str, correct_model_phrases: List, wrong_model_phrases: List, human_ref_scores: dict, human_ref_l_r: dict, out_file: str) -> None:
+    q_df = pd.read_csv(questions_file, names=["matched_idiom", "phrase", "left", "right"])
+    idiom_df = pd.read_csv(idiom_datapath)
+    idiom_df["phrase_words"] = idiom_df["ngram"].apply(lambda x: " ".join([item.split("/")[0] for item in ast.literal_eval(x)]))
+    idiom_df["idiom_words"] = idiom_df["assoc_idiom"].apply(lambda x: " ".join([item.split("/")[0] for item in ast.literal_eval(x)]))
+
+    with open(out_file, "w") as out_f:
+        out_f.write("phrase,correct,is_idiom,human_comp_score,closer_meaning_human,closer_meaning_model\n")
+        for p in correct_model_phrases:
+            human_score = human_ref_scores[p]
+            phrase_info = q_df.loc[q_df["phrase"] == p]
+            #if p == "flannelled fool":
+                #pdb.set_trace()
+            try:
+                is_idiom = (phrase_info["matched_idiom"] == phrase_info["phrase"]).item()
+                closer = phrase_info["left"].item() if human_ref_l_r[p]["l"] > human_ref_l_r[p]["r"] else phrase_info["right"].item()
+                pdb.set_trace()
+                freq = idiom_df.loc[idiom_df["phrase_words"] == p]["freq"]
+            except: # selected as idiom and matched phrase
+                is_idiom = (phrase_info.iloc[0]["matched_idiom"] == phrase_info.iloc[0]["phrase"])
+                closer = phrase_info.iloc[0]["left"] if human_ref_l_r[p]["l"] > human_ref_l_r[p]["r"] else phrase_info.iloc[0]["right"]
+            model_closer = closer
+            out_f.write(f"{p},correct,{is_idiom},{human_score},{closer},{model_closer}\n")
+        for p in wrong_model_phrases:
+            human_score = human_ref_scores[p]
+            phrase_info = q_df.loc[q_df["phrase"] == p]
+            try:
+                is_idiom = (phrase_info["matched_idiom"] == phrase_info["phrase"]).item()
+                closer = phrase_info["left"].item() if human_ref_l_r[p]["l"] > human_ref_l_r[p]["r"] else phrase_info["right"].item()
+                model_closer = phrase_info["right"].item() if human_ref_l_r[p]["l"] > human_ref_l_r[p]["r"] else phrase_info["left"].item()
+
+            except: # selected as idiom and matched phrase
+                is_idiom = (phrase_info.iloc[0]["matched_idiom"] == phrase_info.iloc[0]["phrase"])
+                closer = phrase_info.iloc[0]["left"] if human_ref_l_r[p]["l"] > human_ref_l_r[p]["r"] else phrase_info.iloc[0]["right"]
+                model_closer = phrase_info.iloc[0]["right"] if human_ref_l_r[p]["l"] > human_ref_l_r[p]["r"] else phrase_info.iloc[0]["left"]
+
+            out_f.write(f"{p},wrong,{is_idiom},{human_score},{closer},{model_closer}\n")
+
+
+def idiomaticity_test(questions_file: str, human_scores: dict, model_scores: dict):
+    q_df = pd.read_csv(questions_file, names=["matched_idiom", "phrase", "left", "right"])
+    example_count = 0
+    correct = 0
+    for idiom_phrase in q_df["matched_idiom"].unique():
+        other_phrases = q_df.loc[q_df["matched_idiom"] == idiom_phrase]
+        for other in other_phrases.to_dict(orient="records"):
+            if other["phrase"] == idiom_phrase:
+                continue
+            if other["phrase"] not in human_scores or idiom_phrase not in human_scores:
+                continue
+            if human_scores[other["phrase"]] > human_scores[idiom_phrase]:
+                example_count += 1
+                if model_scores[other["phrase"]] > model_scores[idiom_phrase]:
+                    correct += 1
+    return correct/example_count
 
 if __name__ == "__main__":
     human_file = "./data/qualtrics_results/idiom_annotation_final.csv"
@@ -264,6 +340,10 @@ if __name__ == "__main__":
 
     models = ["bert", "roberta", "deberta", "gpt2"]
     emb_types = ["CLS", "avg"]
+    corr_human_len = None
+    corr_human_freq = None
+    corr_model_len = []
+    corr_model_freq = []
     p_vals = []
     
     for model in models:
@@ -272,14 +352,24 @@ if __name__ == "__main__":
             print(model, emb_type)
             print("===")
             overall_comp_human, l_r_comp_human = get_human_agreements(human_file, questions_file)
-            #overall_comp_human, l_r_comp_human = get_human_answers(human_file, questions_file)
             overall_comp_model, l_r_comp_model = get_model_deviations(model, questions_file, emb_type=emb_type)
-            subphrase_test_acc = subphrase_test(l_r_comp_human, l_r_comp_model)
+            subphrase_test_acc, correct_phrases, wrong_phrases = subphrase_test(l_r_comp_human, l_r_comp_model)
             print("subphrase acc: ", subphrase_test_acc)
-            #overall_comp_human, l_r_comp_human = get_human_answers(human_file, questions_file)
+            acc_idiom_test = idiomaticity_test(questions_file, overall_comp_human, overall_comp_model)
+            print("idiomatic acc: ", acc_idiom_test)
             corr, p_val = find_rank_correlation(overall_comp_human, overall_comp_model)
             print("spearman correlation human/model: ", corr, p_val)
             p_vals.append(p_val)
-            find_other_correlations(overall_comp_human, overall_comp_model, idioms_file, questions_file)
+            corr_human, corr_model = find_other_correlations(overall_comp_human, overall_comp_model, idioms_file, questions_file)
+            if corr_human_len is None:
+                corr_human_len = corr_human["length"]
+            if corr_human_freq is None:
+                corr_human_freq = corr_human["frequency"]
+            corr_model_len.append(corr_model["length"])
+            corr_model_freq.append(corr_model["frequency"])
 
     print(multipletests(p_vals, method="holm"))
+    print("length")
+    print(multipletests([corr_human_len] + corr_model_len, method="holm"))
+    print("freq")
+    print(multipletests([corr_human_freq] + corr_model_freq, method="holm"))

@@ -23,8 +23,6 @@ import re
 
 from src.models.get_vecs import model_init
 
-MAX_LENGTH = 123 # have to determine this manually
-
 NULL_VALUES = ["0", "NIL", "*", "*u*", "*ich*", "*exp*", "*rnr*", "*ppa*", "*?*", "-lrb-", "-rrb-"] + [f"*t*-{i}" for i in range(1, 1000)] + [f"*-{i}" for i in range(1, 1000)] + [f"*exp*-{i}" for i in range(1, 1000)] + [f"*ich*-{i}" for i in range(1, 1000)] + [f"*rnr*-{i}" for i in range(1, 1000)] + [f"*ppa*-{i}" for i in range(1, 1000)]
 NULL_VALUES = set(NULL_VALUES)
 
@@ -163,7 +161,7 @@ def get_df_from_full_sentences(selected_files, treebank_obj) -> Tuple[pd.DataFra
 
   return pd.DataFrame(col_dict), MAX_LENGTH
 
-def get_bert_embeddings(dataloader, comparison_type: str = "CLS", cuda: bool = False):
+def get_model_embeddings(model, dataloader, comparison_type: str = "CLS", model_type: str = "encoder", cuda: bool = False, layer: int = 12):
   embeddings = None
   i = 0
   with torch.no_grad():
@@ -173,11 +171,27 @@ def get_bert_embeddings(dataloader, comparison_type: str = "CLS", cuda: bool = F
       b_input_ids, b_attn_masks = batch
       outputs = model(b_input_ids, token_type_ids=None, attention_mask=b_attn_masks)
       if comparison_type == "CLS":
-        embedding = outputs[0][:,0,:].detach().cpu().numpy()
+        if layer == 12:
+          if model_type == "encoder":
+            embedding = outputs["last_hidden_state"][:,0,:].detach().cpu().numpy()
+          else:
+            embedding = outputs["last_hidden_state"][:, -1, :].detach().cpu().numpy()
+        else:
+          hidden = outputs["hidden_states"][layer]
+          if model_type == "encoder":
+            embedding = hidden[:, 0, :].detach().cpu().numpy()
+          else:
+            embedding = hidden[:, -1, :].detach().cpu().numpy()
       elif comparison_type == "avg":
-        token_embeddings = outputs["last_hidden_state"]
-        token_embeddings[b_attn_masks == 0] = 0 # get rid of padding vectors 
-        embedding = (token_embeddings.sum(axis=1) / b_attn_masks.sum(axis=1).unsqueeze(-1)).detach().cpu().numpy()
+        if layer == 12:
+          token_embeddings = outputs["last_hidden_state"]
+          token_embeddings[b_attn_masks == 0] = 0 # get rid of padding vectors 
+          embedding = (token_embeddings.sum(axis=1) / b_attn_masks.sum(axis=1).unsqueeze(-1)).detach().cpu().numpy()
+        else:
+          token_embeddings = outputs["hidden_states"][layer]
+          token_embeddings[b_attn_masks == 0] = 0
+          embedding = (token_embeddings.sum(axis=1) / b_attn_masks.sum(axis=1).unsqueeze(-1)).detach().cpu().numpy()
+
       elif comparison_type == "max":
         token_embeddings = outputs["last_hidden_state"]
         embedding, _ = torch.max((token_embeddings * b_attn_masks.unsqueeze(-1)), axis=1)
@@ -225,11 +239,12 @@ def unique_phrase_df(sents_list: List, out_filename: str) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process treebank files for subsentences and return records including BERT embeddings, tree types, and sentence positions.")
-    parser.add_argument("--model", help="model to extract embeddings for", choices=["bert", "roberta", "deberta"], default="bert")
+    parser.add_argument("--model", help="model to extract embeddings for", choices=["bert", "roberta", "deberta", "gpt2"], default="bert")
     parser.add_argument("-i", dest="selection_num", help="process number (split into 10)")
     parser.add_argument("--emb_type", help="embedding type to use", choices=["CLS", "avg", "max"], default="CLS")
     parser.add_argument("--treebank_path", help="path to treebank files. Defaults to NLTK treebank sample if not supplied.", action="store_true")
     parser.add_argument("--cuda", help="use gpu", action="store_true")
+    parser.add_argument("--layer", help="layer embeddings to collect", choices=[i for i in range(1, 13)], default=12, type=int)
     args = parser.parse_args()
             
     if args.treebank_path: # brown: 192 files, wsj: 2313
@@ -241,6 +256,8 @@ if __name__ == "__main__":
     df = df.loc[df["sublength"] >= 2] # drop trivial trees
 
     model, tokenizer = model_init(args.model, cuda=args.cuda)
+    model_type = "gpt" if args.model == "gpt2" else "encoder"
+
     test_samples = df["sent"].tolist()
     encoded_data_val = tokenizer(test_samples, 
                                 add_special_tokens=True, 
@@ -260,14 +277,14 @@ if __name__ == "__main__":
 
     dataset = TensorDataset(input_ids, attention_masks)
     dataloader = DataLoader(dataset, sampler=SequentialSampler(dataset), batch_size=16)
-
-    embeddings = get_bert_embeddings(dataloader, comparison_type=args.emb_type, cuda=args.cuda)
+    
+    embeddings = get_model_embeddings(model, dataloader, comparison_type=args.emb_type, model_type=model_type, cuda=args.cuda, layer=args.layer)
     df["emb"] = embeddings.tolist()
-    np.save(f"./data/embs/{args.model}_{args.emb_type}_{args.selection_num}_full_{args.treebank_path}.npy", embeddings)
+    np.save(f"./data/embs/{args.model}_{args.emb_type}_{args.selection_num}_full_{args.treebank_path}_layer_{args.layer}.npy", embeddings)
 
     #root_to_emb = get_root_embs(df)
     #subtree_dists = get_dist_from_root(df, root_to_emb)
     #df["dist_from_root"] = subtree_dists
     #depth_1_subtree_rows = df.loc[df["depth"] == 1]
     #depth_1_subtree_dists = depth_1_subtree_rows["dist_from_root"].tolist()
-    df.to_csv(f"./tree_data_{args.model}_{args.selection_num}_{args.emb_type}_{args.treebank_path}.csv")
+    df.to_csv(f"./data/raw_tree_data/tree_data_{args.model}_{args.selection_num}_{args.emb_type}_{args.treebank_path}_layer_{args.layer}.csv")
