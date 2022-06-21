@@ -1,0 +1,31 @@
+phrase,correct,is_idiom,human_comp_score,closer_meaning_human,closer_meaning_model
+inner circle,correct,True,1.3333333333333333,inner,inner
+fashion plate,correct,True,1.3333333333333333,fashion,fashion
+spelling bee,correct,True,1.0,spelling,spelling
+date with destiny,correct,True,1.3333333333333333,with destiny,with destiny
+sail under false colors,correct,True,1.0,under false colors,under false colors
+eternal sleep,correct,True,1.6666666666666667,eternal,eternal
+stage coach,correct,False,1.6666666666666667,coach,coach
+bargain basement,correct,True,1.6666666666666667,bargain,bargain
+walk of life,correct,True,1.3333333333333333,of life,of life
+rat race,correct,True,1.3333333333333333,race,race
+pearl of wisdom,correct,True,2.0,of wisdom,of wisdom
+peep of day,correct,True,1.6666666666666667,of day,of day
+ballpark estimate,correct,True,1.6666666666666667,estimate,estimate
+lap of luxury,correct,True,1.6666666666666667,of luxury,of luxury
+yellow journalist,correct,True,1.3333333333333333,journalist,journalist
+rainbow bridge,wrong,True,1.3333333333333333,bridge,rainbow
+top dog,wrong,True,1.3333333333333333,top,dog
+grandfather clock,wrong,True,1.6666666666666667,clock,grandfather
+noble gas,wrong,True,1.3333333333333333,gas,noble
+couch potato,wrong,True,1.3333333333333333,couch,potato
+second fiddle,wrong,True,1.0,second,fiddle
+as right as rain,wrong,True,1.0,as right,as rain
+dog and pony show,wrong,True,1.0,show,dog and pony
+second banana,wrong,True,1.0,second,banana
+young blood,wrong,True,1.6666666666666667,young,blood
+upper crust,wrong,True,1.3333333333333333,upper,crust
+rock bottom,wrong,True,1.6666666666666667,bottom,rock
+bold as brass,wrong,True,2.0,bold,as brass
+number crunching,wrong,True,1.3333333333333333,number,crunching
+sure as shooting,wrong,True,1.3333333333333333,sure,as shooting

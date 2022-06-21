@@ -1,0 +1,2785 @@
+StartDate,EndDate,Status,Progress,Duration (in seconds),Finished,RecordedDate,ResponseId,DistributionChannel,UserLanguage,Q_RecaptchaScore,consent response,Q38,Q39,Q40,Q41,Q43,Q44,Q24,Q25,Q26,100_Q9,100_Q33,100_Q34,101_Q9,101_Q33,101_Q34,102_Q9,102_Q33,102_Q34,103_Q9,103_Q33,103_Q34,104_Q9,104_Q33,104_Q34,105_Q9,105_Q33,105_Q34,106_Q9,106_Q33,106_Q34,107_Q9,107_Q33,107_Q34,108_Q9,108_Q33,108_Q34,109_Q9,109_Q33,109_Q34,110_Q9,110_Q33,110_Q34,111_Q9,111_Q33,111_Q34,112_Q9,112_Q33,112_Q34,113_Q9,113_Q33,113_Q34,114_Q9,114_Q33,114_Q34,115_Q9,115_Q33,115_Q34,116_Q9,116_Q33,116_Q34,117_Q9,117_Q33,117_Q34,118_Q9,118_Q33,118_Q34,119_Q9,119_Q33,119_Q34,120_Q9,120_Q33,120_Q34,121_Q9,121_Q33,121_Q34,122_Q9,122_Q33,122_Q34,123_Q9,123_Q33,123_Q34,124_Q9,124_Q33,124_Q34,125_Q9,125_Q33,125_Q34,126_Q9,126_Q33,126_Q34,127_Q9,127_Q33,127_Q34,128_Q9,128_Q33,128_Q34,129_Q9,129_Q33,129_Q34,130_Q9,130_Q33,130_Q34,131_Q9,131_Q33,131_Q34,132_Q9,132_Q33,132_Q34,133_Q9,133_Q33,133_Q34,134_Q9,134_Q33,134_Q34,135_Q9,135_Q33,135_Q34,136_Q9,136_Q33,136_Q34,137_Q9,137_Q33,137_Q34,138_Q9,138_Q33,138_Q34,139_Q9,139_Q33,139_Q34,140_Q9,140_Q33,140_Q34,141_Q9,141_Q33,141_Q34,142_Q9,142_Q33,142_Q34,143_Q9,143_Q33,143_Q34,144_Q9,144_Q33,144_Q34,145_Q9,145_Q33,145_Q34,146_Q9,146_Q33,146_Q34,147_Q9,147_Q33,147_Q34,148_Q9,148_Q33,148_Q34,149_Q9,149_Q33,149_Q34,150_Q9,150_Q33,150_Q34,151_Q9,151_Q33,151_Q34,152_Q9,152_Q33,152_Q34,153_Q9,153_Q33,153_Q34,154_Q9,154_Q33,154_Q34,155_Q9,155_Q33,155_Q34,156_Q9,156_Q33,156_Q34,157_Q9,157_Q33,157_Q34,158_Q9,158_Q33,158_Q34,159_Q9,159_Q33,159_Q34,160_Q9,160_Q33,160_Q34,161_Q9,161_Q33,161_Q34,162_Q9,162_Q33,162_Q34,163_Q9,163_Q33,163_Q34,164_Q9,164_Q33,164_Q34,165_Q9,165_Q33,165_Q34,166_Q9,166_Q33,166_Q34,167_Q9,167_Q33,167_Q34,168_Q9,168_Q33,168_Q34,169_Q9,169_Q33,169_Q34,170_Q9,170_Q33,170_Q34,171_Q9,171_Q33,171_Q34,172_Q9,172_Q33,172_Q34,173_Q9,173_Q33,173_Q34,174_Q9,174_Q33,174_Q34,175_Q9,175_Q33,175_Q34,176_Q9,176_Q33,176_Q34,177_Q9,177_Q33,177_Q34,178_Q9,178_Q33,178_Q34,179_Q9,179_Q33,179_Q34,180_Q9,180_Q33,180_Q34,181_Q9,181_Q33,181_Q34,182_Q9,182_Q33,182_Q34,183_Q9,183_Q33,183_Q34,184_Q9,184_Q33,184_Q34,185_Q9,185_Q33,185_Q34,186_Q9,186_Q33,186_Q34,187_Q9,187_Q33,187_Q34,188_Q9,188_Q33,188_Q34,189_Q9,189_Q33,189_Q34,190_Q9,190_Q33,190_Q34,191_Q9,191_Q33,191_Q34,192_Q9,192_Q33,192_Q34,193_Q9,193_Q33,193_Q34,194_Q9,194_Q33,194_Q34,195_Q9,195_Q33,195_Q34,196_Q9,196_Q33,196_Q34,197_Q9,197_Q33,197_Q34,198_Q9,198_Q33,198_Q34,199_Q9,199_Q33,199_Q34,200_Q9,200_Q33,200_Q34,gender,gender_3_TEXT,age_4,english first,english years,other thoughts,Q36,randID,UserAgent
+Start Date,End Date,Response Type,Progress,Duration (in seconds),Finished,Recorded Date,Response ID,Distribution Channel,User Language,Q_RecaptchaScore,"After reading this consent thoroughly, please select one of the options below.","Consider the following phrase:
+
+Raining cats and dogs
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+
+
+Please consider the two parts of this phrase individually: 
+Raining 
+Cats and dogs
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+ 1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","Knowing the final meaning of the phrase Raining cats and dogs, how much do you think Raining contributes to the final meaning?","Knowing the final meaning of the phrase Raining cats and dogs, how much do you think Cats and dogs contributes to the final meaning?","Consider the following phrase:
+
+Olive oil
+
+ If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+
+Please consider the two parts of this phrase individually:
+
+Olive
+Oil
+
+ How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase?
+
+1. Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","Knowing the final meaning of the phrase Olive oil, how much do you think olive contributes to the final meaning?","Knowing the final meaning of the phrase Olive oil, how much do you think oil contributes to the final meaning?","Consider the following phrase:
+
+Piranha Plant
+
+ If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+
+Please consider the two parts of this phrase individually:
+
+Piranha
+Plant
+
+ How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase?
+
+1. Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","Knowing the final meaning of the phrase Piranha plant, how much do you think Piranha contributes to the final meaning?","Knowing the final meaning of the phrase Piranha plant, how much do you think Plant contributes to the final meaning?","just in case - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","just in case - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","just in case - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","even though today - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","even though today - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","even though today - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","so that moment - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","so that moment - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","so that moment - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","ever after cross - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","ever after cross - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","ever after cross - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","even as wilt - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","even as wilt - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","even as wilt - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","even if today - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","even if today - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","even if today - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","white coat hypertension - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","white coat hypertension - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","white coat hypertension - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","absolute state sovereignty - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","absolute state sovereignty - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","absolute state sovereignty - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","average heat flux - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","average heat flux - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","average heat flux - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","annual music festival - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","annual music festival - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","annual music festival - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","american college president - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","american college president - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","american college president - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","alternative life style - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","alternative life style - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","alternative life style - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","dull as ditchwater - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","dull as ditchwater - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","dull as ditchwater - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","prone now ever - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","prone now ever - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","prone now ever - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","good as far - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","good as far - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","good as far - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","little too much - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","little too much - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","little too much - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","high as continually - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","high as continually - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","high as continually - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","near far away - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","near far away - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","near far away - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","neither here nor there - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","neither here nor there - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","neither here nor there - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","nearly north and south - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","nearly north and south - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","nearly north and south - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","not once but twice - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","not once but twice - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","not once but twice - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","straight up and down - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","straight up and down - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","straight up and down - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","only here and there - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","only here and there - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","only here and there - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","not wisely but well - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","not wisely but well - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","not wisely but well - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","way of all flesh - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","way of all flesh - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","way of all flesh - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","friend in new york - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","friend in new york - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","friend in new york - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","country like united states - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","country like united states - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","country like united states - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","attack on soviet union - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","attack on soviet union - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","attack on soviet union - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","life of our lord - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","life of our lord - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","life of our lord - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","commencement of french revolution - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","commencement of french revolution - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","commencement of french revolution - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","in bad odor - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","in bad odor - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","in bad odor - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","about same pitch - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","about same pitch - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","about same pitch - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","along real axis - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","along real axis - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","along real axis - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","about 70th degree - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","about 70th degree - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","about 70th degree - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","along western margin - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","along western margin - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","along western margin - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","about 15th day - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","about 15th day - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","about 15th day - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","find her place - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","find her place - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","find her place - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","find them fast - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","find them fast - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","find them fast - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","return me evil - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","return me evil - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","return me evil - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","bring them relief - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","bring them relief - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","bring them relief - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","support her population - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","support her population - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","support her population - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","call it anything - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","call it anything - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","call it anything - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","in full force - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","in full force - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","in full force - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","with small success - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","with small success - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","with small success - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","of considerable extent - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","of considerable extent - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","of considerable extent - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","of whole system - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","of whole system - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","of whole system - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","at particular time - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","at particular time - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","at particular time - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","by own consent - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","by own consent - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","by own consent - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","on good terms - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","on good terms - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","on good terms - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","under similar circumstances - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","under similar circumstances - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","under similar circumstances - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","in different proportions - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","in different proportions - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","in different proportions - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","for valuable suggestions - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","for valuable suggestions - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","for valuable suggestions - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","in certain areas - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","in certain areas - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","in certain areas - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","of other kinds - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","of other kinds - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","of other kinds - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","no great shakes - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","no great shakes - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","no great shakes - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","ah good people - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","ah good people - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","ah good people - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","dear precious lines - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","dear precious lines - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","dear precious lines - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","ah merry boys - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","ah merry boys - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","ah merry boys - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","bye little birds - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","bye little birds - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","bye little birds - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","nay reverend gentlemen - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","nay reverend gentlemen - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","nay reverend gentlemen - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","as right as rain - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","as right as rain - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","as right as rain - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","equally distant from center - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","equally distant from center - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","equally distant from center - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","well worthy of imitation - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","well worthy of imitation - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","well worthy of imitation - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","largely responsible for fact - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","largely responsible for fact - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","largely responsible for fact - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","far short of mark - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","far short of mark - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","far short of mark - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","almost independent of temperature - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","almost independent of temperature - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","almost independent of temperature - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","never you mind - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","never you mind - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","never you mind - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","much it be - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","much it be - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","much it be - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","so you mean - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","so you mean - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","so you mean - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","north i fail - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","north i fail - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","north i fail - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","as he appear - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","as he appear - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","as he appear - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","courtly thou think - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","courtly thou think - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","courtly thou think - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","revolving door syndrome - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","revolving door syndrome - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","revolving door syndrome - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","18th century opera - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","18th century opera - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","18th century opera - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","abstract syntax notation - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","abstract syntax notation - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","abstract syntax notation - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","abnormal density lipoprotein - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","abnormal density lipoprotein - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","abnormal density lipoprotein - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","above matrix equation - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","above matrix equation - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","above matrix equation - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","absolute velocity u - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","absolute velocity u - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","absolute velocity u - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","raised her voice - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","raised her voice - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","raised her voice - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","agreed she receive - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","agreed she receive - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","agreed she receive - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","announced he perform - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","announced he perform - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","announced he perform - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","begun you see - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","begun you see - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","begun you see - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","alarmed they march - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","alarmed they march - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","alarmed they march - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","alarmed you see - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","alarmed you see - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","alarmed you see - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","look before you leap - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","look before you leap - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","look before you leap - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","come io me aphea - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","come io me aphea - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","come io me aphea - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","divide among them iii - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","divide among them iii - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","divide among them iii - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","be for i lord - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","be for i lord - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","be for i lord - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","invite for me honoria - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","invite for me honoria - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","invite for me honoria - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","exit stage left - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","exit stage left - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","exit stage left - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","alarm bell pealed - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","alarm bell pealed - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","alarm bell pealed - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","absorbing topic ousted - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","absorbing topic ousted - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","absorbing topic ousted - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","a. a. had - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","a. a. had - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","a. a. had - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","angel hath said - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","angel hath said - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","angel hath said - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","age group comprised - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","age group comprised - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","age group comprised - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","first and last - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","first and last - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","first and last - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","china and japan - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","china and japan - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","china and japan - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","england and wales - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","england and wales - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","england and wales - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","journal and messenger - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","journal and messenger - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","journal and messenger - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","bazalgette and humphreys - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","bazalgette and humphreys - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","bazalgette and humphreys - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?","sedition and blasphemy - Consider the following phrase:
+ 
+ [Field-1]
+
+ 
+
+If the phrase has both a literal and idiomatic meaning, please consider the idiomatic meaning. E.g. “raining cats and dogs” could mean literal cats and dogs falling out of the sky, but you should consider the usual meaning. Some of the phrases are quite rare, so you should search up the meaning if you don’t know it.
+ 
+
+Please consider the two parts of this phrase individually:
+
+
+
+[Field-2]
+
+[Field-3]
+
+ 
+
+How much do you need to know, other than the ordinary meanings of the words, in order to understand the phrase? 
+
+ 
+
+1.  Not compositional: You cannot understand it at all if you only know the usual meanings of the words. You must know something more than the usual meanings of the words and how words generally combine in English to fully understand this phrase.
+
+2. Somewhat compositional: You can understand it to some extent by combining the meanings of the two parts of the phrase, but one or more parts might have a slightly different meaning than usual.
+
+3. Fully compositional: You can understand it fully just by combining the usual meanings of the two parts of the phrase.","sedition and blasphemy - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-2] contributes to the final meaning?","sedition and blasphemy - Knowing the final meaning of the phrase [Field-1], how much do you think [Field-3] contributes to the final meaning?",What is your gender? - Selected Choice,What is your gender? - Other (Please Specify): - Text,What is your age? - Age:,Is English your first language?,Approximately how many years have you been speaking English?,"If you have any thoughts you would like to share with the researchers about this study, you can do so here:","Here is your completion code: [Field-randID] 
+
+Please copy or screenshot it before leaving this page. You must put the code into the box on MTurk to receive compensation.",randID,UserAgent
+"{""ImportId"":""startDate"",""timeZone"":""America/Denver""}","{""ImportId"":""endDate"",""timeZone"":""America/Denver""}","{""ImportId"":""status""}","{""ImportId"":""progress""}","{""ImportId"":""duration""}","{""ImportId"":""finished""}","{""ImportId"":""recordedDate"",""timeZone"":""America/Denver""}","{""ImportId"":""_recordId""}","{""ImportId"":""distributionChannel""}","{""ImportId"":""userLanguage""}","{""ImportId"":""Q_RecaptchaScore""}","{""ImportId"":""QID15""}","{""ImportId"":""QID44""}","{""ImportId"":""QID45""}","{""ImportId"":""QID46""}","{""ImportId"":""QID47""}","{""ImportId"":""QID49""}","{""ImportId"":""QID50""}","{""ImportId"":""QID52""}","{""ImportId"":""QID53""}","{""ImportId"":""QID54""}","{""ImportId"":""100_QID9""}","{""ImportId"":""100_QID39""}","{""ImportId"":""100_QID40""}","{""ImportId"":""101_QID9""}","{""ImportId"":""101_QID39""}","{""ImportId"":""101_QID40""}","{""ImportId"":""102_QID9""}","{""ImportId"":""102_QID39""}","{""ImportId"":""102_QID40""}","{""ImportId"":""103_QID9""}","{""ImportId"":""103_QID39""}","{""ImportId"":""103_QID40""}","{""ImportId"":""104_QID9""}","{""ImportId"":""104_QID39""}","{""ImportId"":""104_QID40""}","{""ImportId"":""105_QID9""}","{""ImportId"":""105_QID39""}","{""ImportId"":""105_QID40""}","{""ImportId"":""106_QID9""}","{""ImportId"":""106_QID39""}","{""ImportId"":""106_QID40""}","{""ImportId"":""107_QID9""}","{""ImportId"":""107_QID39""}","{""ImportId"":""107_QID40""}","{""ImportId"":""108_QID9""}","{""ImportId"":""108_QID39""}","{""ImportId"":""108_QID40""}","{""ImportId"":""109_QID9""}","{""ImportId"":""109_QID39""}","{""ImportId"":""109_QID40""}","{""ImportId"":""110_QID9""}","{""ImportId"":""110_QID39""}","{""ImportId"":""110_QID40""}","{""ImportId"":""111_QID9""}","{""ImportId"":""111_QID39""}","{""ImportId"":""111_QID40""}","{""ImportId"":""112_QID9""}","{""ImportId"":""112_QID39""}","{""ImportId"":""112_QID40""}","{""ImportId"":""113_QID9""}","{""ImportId"":""113_QID39""}","{""ImportId"":""113_QID40""}","{""ImportId"":""114_QID9""}","{""ImportId"":""114_QID39""}","{""ImportId"":""114_QID40""}","{""ImportId"":""115_QID9""}","{""ImportId"":""115_QID39""}","{""ImportId"":""115_QID40""}","{""ImportId"":""116_QID9""}","{""ImportId"":""116_QID39""}","{""ImportId"":""116_QID40""}","{""ImportId"":""117_QID9""}","{""ImportId"":""117_QID39""}","{""ImportId"":""117_QID40""}","{""ImportId"":""118_QID9""}","{""ImportId"":""118_QID39""}","{""ImportId"":""118_QID40""}","{""ImportId"":""119_QID9""}","{""ImportId"":""119_QID39""}","{""ImportId"":""119_QID40""}","{""ImportId"":""120_QID9""}","{""ImportId"":""120_QID39""}","{""ImportId"":""120_QID40""}","{""ImportId"":""121_QID9""}","{""ImportId"":""121_QID39""}","{""ImportId"":""121_QID40""}","{""ImportId"":""122_QID9""}","{""ImportId"":""122_QID39""}","{""ImportId"":""122_QID40""}","{""ImportId"":""123_QID9""}","{""ImportId"":""123_QID39""}","{""ImportId"":""123_QID40""}","{""ImportId"":""124_QID9""}","{""ImportId"":""124_QID39""}","{""ImportId"":""124_QID40""}","{""ImportId"":""125_QID9""}","{""ImportId"":""125_QID39""}","{""ImportId"":""125_QID40""}","{""ImportId"":""126_QID9""}","{""ImportId"":""126_QID39""}","{""ImportId"":""126_QID40""}","{""ImportId"":""127_QID9""}","{""ImportId"":""127_QID39""}","{""ImportId"":""127_QID40""}","{""ImportId"":""128_QID9""}","{""ImportId"":""128_QID39""}","{""ImportId"":""128_QID40""}","{""ImportId"":""129_QID9""}","{""ImportId"":""129_QID39""}","{""ImportId"":""129_QID40""}","{""ImportId"":""130_QID9""}","{""ImportId"":""130_QID39""}","{""ImportId"":""130_QID40""}","{""ImportId"":""131_QID9""}","{""ImportId"":""131_QID39""}","{""ImportId"":""131_QID40""}","{""ImportId"":""132_QID9""}","{""ImportId"":""132_QID39""}","{""ImportId"":""132_QID40""}","{""ImportId"":""133_QID9""}","{""ImportId"":""133_QID39""}","{""ImportId"":""133_QID40""}","{""ImportId"":""134_QID9""}","{""ImportId"":""134_QID39""}","{""ImportId"":""134_QID40""}","{""ImportId"":""135_QID9""}","{""ImportId"":""135_QID39""}","{""ImportId"":""135_QID40""}","{""ImportId"":""136_QID9""}","{""ImportId"":""136_QID39""}","{""ImportId"":""136_QID40""}","{""ImportId"":""137_QID9""}","{""ImportId"":""137_QID39""}","{""ImportId"":""137_QID40""}","{""ImportId"":""138_QID9""}","{""ImportId"":""138_QID39""}","{""ImportId"":""138_QID40""}","{""ImportId"":""139_QID9""}","{""ImportId"":""139_QID39""}","{""ImportId"":""139_QID40""}","{""ImportId"":""140_QID9""}","{""ImportId"":""140_QID39""}","{""ImportId"":""140_QID40""}","{""ImportId"":""141_QID9""}","{""ImportId"":""141_QID39""}","{""ImportId"":""141_QID40""}","{""ImportId"":""142_QID9""}","{""ImportId"":""142_QID39""}","{""ImportId"":""142_QID40""}","{""ImportId"":""143_QID9""}","{""ImportId"":""143_QID39""}","{""ImportId"":""143_QID40""}","{""ImportId"":""144_QID9""}","{""ImportId"":""144_QID39""}","{""ImportId"":""144_QID40""}","{""ImportId"":""145_QID9""}","{""ImportId"":""145_QID39""}","{""ImportId"":""145_QID40""}","{""ImportId"":""146_QID9""}","{""ImportId"":""146_QID39""}","{""ImportId"":""146_QID40""}","{""ImportId"":""147_QID9""}","{""ImportId"":""147_QID39""}","{""ImportId"":""147_QID40""}","{""ImportId"":""148_QID9""}","{""ImportId"":""148_QID39""}","{""ImportId"":""148_QID40""}","{""ImportId"":""149_QID9""}","{""ImportId"":""149_QID39""}","{""ImportId"":""149_QID40""}","{""ImportId"":""150_QID9""}","{""ImportId"":""150_QID39""}","{""ImportId"":""150_QID40""}","{""ImportId"":""151_QID9""}","{""ImportId"":""151_QID39""}","{""ImportId"":""151_QID40""}","{""ImportId"":""152_QID9""}","{""ImportId"":""152_QID39""}","{""ImportId"":""152_QID40""}","{""ImportId"":""153_QID9""}","{""ImportId"":""153_QID39""}","{""ImportId"":""153_QID40""}","{""ImportId"":""154_QID9""}","{""ImportId"":""154_QID39""}","{""ImportId"":""154_QID40""}","{""ImportId"":""155_QID9""}","{""ImportId"":""155_QID39""}","{""ImportId"":""155_QID40""}","{""ImportId"":""156_QID9""}","{""ImportId"":""156_QID39""}","{""ImportId"":""156_QID40""}","{""ImportId"":""157_QID9""}","{""ImportId"":""157_QID39""}","{""ImportId"":""157_QID40""}","{""ImportId"":""158_QID9""}","{""ImportId"":""158_QID39""}","{""ImportId"":""158_QID40""}","{""ImportId"":""159_QID9""}","{""ImportId"":""159_QID39""}","{""ImportId"":""159_QID40""}","{""ImportId"":""160_QID9""}","{""ImportId"":""160_QID39""}","{""ImportId"":""160_QID40""}","{""ImportId"":""161_QID9""}","{""ImportId"":""161_QID39""}","{""ImportId"":""161_QID40""}","{""ImportId"":""162_QID9""}","{""ImportId"":""162_QID39""}","{""ImportId"":""162_QID40""}","{""ImportId"":""163_QID9""}","{""ImportId"":""163_QID39""}","{""ImportId"":""163_QID40""}","{""ImportId"":""164_QID9""}","{""ImportId"":""164_QID39""}","{""ImportId"":""164_QID40""}","{""ImportId"":""165_QID9""}","{""ImportId"":""165_QID39""}","{""ImportId"":""165_QID40""}","{""ImportId"":""166_QID9""}","{""ImportId"":""166_QID39""}","{""ImportId"":""166_QID40""}","{""ImportId"":""167_QID9""}","{""ImportId"":""167_QID39""}","{""ImportId"":""167_QID40""}","{""ImportId"":""168_QID9""}","{""ImportId"":""168_QID39""}","{""ImportId"":""168_QID40""}","{""ImportId"":""169_QID9""}","{""ImportId"":""169_QID39""}","{""ImportId"":""169_QID40""}","{""ImportId"":""170_QID9""}","{""ImportId"":""170_QID39""}","{""ImportId"":""170_QID40""}","{""ImportId"":""171_QID9""}","{""ImportId"":""171_QID39""}","{""ImportId"":""171_QID40""}","{""ImportId"":""172_QID9""}","{""ImportId"":""172_QID39""}","{""ImportId"":""172_QID40""}","{""ImportId"":""173_QID9""}","{""ImportId"":""173_QID39""}","{""ImportId"":""173_QID40""}","{""ImportId"":""174_QID9""}","{""ImportId"":""174_QID39""}","{""ImportId"":""174_QID40""}","{""ImportId"":""175_QID9""}","{""ImportId"":""175_QID39""}","{""ImportId"":""175_QID40""}","{""ImportId"":""176_QID9""}","{""ImportId"":""176_QID39""}","{""ImportId"":""176_QID40""}","{""ImportId"":""177_QID9""}","{""ImportId"":""177_QID39""}","{""ImportId"":""177_QID40""}","{""ImportId"":""178_QID9""}","{""ImportId"":""178_QID39""}","{""ImportId"":""178_QID40""}","{""ImportId"":""179_QID9""}","{""ImportId"":""179_QID39""}","{""ImportId"":""179_QID40""}","{""ImportId"":""180_QID9""}","{""ImportId"":""180_QID39""}","{""ImportId"":""180_QID40""}","{""ImportId"":""181_QID9""}","{""ImportId"":""181_QID39""}","{""ImportId"":""181_QID40""}","{""ImportId"":""182_QID9""}","{""ImportId"":""182_QID39""}","{""ImportId"":""182_QID40""}","{""ImportId"":""183_QID9""}","{""ImportId"":""183_QID39""}","{""ImportId"":""183_QID40""}","{""ImportId"":""184_QID9""}","{""ImportId"":""184_QID39""}","{""ImportId"":""184_QID40""}","{""ImportId"":""185_QID9""}","{""ImportId"":""185_QID39""}","{""ImportId"":""185_QID40""}","{""ImportId"":""186_QID9""}","{""ImportId"":""186_QID39""}","{""ImportId"":""186_QID40""}","{""ImportId"":""187_QID9""}","{""ImportId"":""187_QID39""}","{""ImportId"":""187_QID40""}","{""ImportId"":""188_QID9""}","{""ImportId"":""188_QID39""}","{""ImportId"":""188_QID40""}","{""ImportId"":""189_QID9""}","{""ImportId"":""189_QID39""}","{""ImportId"":""189_QID40""}","{""ImportId"":""190_QID9""}","{""ImportId"":""190_QID39""}","{""ImportId"":""190_QID40""}","{""ImportId"":""191_QID9""}","{""ImportId"":""191_QID39""}","{""ImportId"":""191_QID40""}","{""ImportId"":""192_QID9""}","{""ImportId"":""192_QID39""}","{""ImportId"":""192_QID40""}","{""ImportId"":""193_QID9""}","{""ImportId"":""193_QID39""}","{""ImportId"":""193_QID40""}","{""ImportId"":""194_QID9""}","{""ImportId"":""194_QID39""}","{""ImportId"":""194_QID40""}","{""ImportId"":""195_QID9""}","{""ImportId"":""195_QID39""}","{""ImportId"":""195_QID40""}","{""ImportId"":""196_QID9""}","{""ImportId"":""196_QID39""}","{""ImportId"":""196_QID40""}","{""ImportId"":""197_QID9""}","{""ImportId"":""197_QID39""}","{""ImportId"":""197_QID40""}","{""ImportId"":""198_QID9""}","{""ImportId"":""198_QID39""}","{""ImportId"":""198_QID40""}","{""ImportId"":""199_QID9""}","{""ImportId"":""199_QID39""}","{""ImportId"":""199_QID40""}","{""ImportId"":""200_QID9""}","{""ImportId"":""200_QID39""}","{""ImportId"":""200_QID40""}","{""ImportId"":""QID20""}","{""ImportId"":""QID20_3_TEXT""}","{""ImportId"":""QID21_4""}","{""ImportId"":""QID31""}","{""ImportId"":""QID32_TEXT""}","{""ImportId"":""QID38_TEXT""}","{""ImportId"":""QID42""}","{""ImportId"":""randID""}","{""ImportId"":""UserAgent""}"
+2022-04-21 10:23:47,2022-04-21 10:24:30,Survey Preview,100,42,True,2022-04-21 10:24:30,R_1LSAzPaDhSsFLqL,preview,EN,1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,81109,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
+2022-04-21 12:46:52,2022-04-21 12:52:31,IP Address,100,339,True,2022-04-21 12:52:31,R_2tMBW5cqW50JtY1,anonymous,EN,1,"I understand the procedures above. My questions have been answered to my satisfaction, and I agree to participate in this study.",1 - Not compositional,3 - A great deal or fully,1 - Not at all,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Female,,23,Yes,,,I have recorded the completion code,68421,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
+2022-04-25 17:55:49,2022-04-28 11:50:36,IP Address,100,237287,True,2022-04-28 11:50:37,R_1TAQh2cjykrFmGl,anonymous,EN,0.8999999761581421,"I understand the procedures above. My questions have been answered to my satisfaction, and I agree to participate in this study.",1 - Not compositional,3 - A great deal or fully,1 - Not at all,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,2 - Somewhat compositional,2 - Somewhat,3 - A great deal or fully,2 - Somewhat compositional,2 - Somewhat,2 - Somewhat,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,This phrase doesn't make sense or it isn't in English,,,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,1 - Not compositional,1 - Not at all,2 - Somewhat,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,2 - Somewhat compositional,2 - Somewhat,3 - A great deal or fully,2 - Somewhat compositional,3 - A great deal or fully,2 - Somewhat,This phrase doesn't make sense or it isn't in English,,,This phrase doesn't make sense or it isn't in English,,,2 - Somewhat compositional,2 - Somewhat,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,This phrase doesn't make sense or it isn't in English,,,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,2 - Somewhat compositional,2 - Somewhat,2 - Somewhat,2 - Somewhat compositional,2 - Somewhat,2 - Somewhat,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,1 - Not compositional,2 - Somewhat,2 - Somewhat,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,1 - Not compositional,2 - Somewhat,1 - Not at all,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,2 - Somewhat compositional,3 - A great deal or fully,2 - Somewhat,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,This phrase doesn't make sense or it isn't in English,,,3 - Fully compositional,2 - Somewhat,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,2 - Somewhat compositional,2 - Somewhat,3 - A great deal or fully,2 - Somewhat compositional,2 - Somewhat,3 - A great deal or fully,2 - Somewhat compositional,3 - A great deal or fully,2 - Somewhat,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,2 - Somewhat compositional,2 - Somewhat,2 - Somewhat,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,1 - Not compositional,2 - Somewhat,1 - Not at all,3 - Fully compositional,1 - Not at all,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,This phrase doesn't make sense or it isn't in English,,,1 - Not compositional,3 - A great deal or fully,1 - Not at all,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,2 - Somewhat compositional,3 - A great deal or fully,2 - Somewhat,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,2 - Somewhat compositional,2 - Somewhat,2 - Somewhat,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,2 - Somewhat compositional,3 - A great deal or fully,2 - Somewhat,This phrase doesn't make sense or it isn't in English,,,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,This phrase doesn't make sense or it isn't in English,,,1 - Not compositional,2 - Somewhat,2 - Somewhat,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,2 - Somewhat,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,This phrase doesn't make sense or it isn't in English,,,2 - Somewhat compositional,2 - Somewhat,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,2 - Somewhat compositional,3 - A great deal or fully,2 - Somewhat,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,2 - Somewhat compositional,3 - A great deal or fully,2 - Somewhat,1 - Not compositional,2 - Somewhat,2 - Somewhat,This phrase doesn't make sense or it isn't in English,,,This phrase doesn't make sense or it isn't in English,,,2 - Somewhat compositional,2 - Somewhat,3 - A great deal or fully,This phrase doesn't make sense or it isn't in English,,,1 - Not compositional,3 - A great deal or fully,1 - Not at all,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,This phrase doesn't make sense or it isn't in English,,,This phrase doesn't make sense or it isn't in English,,,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,3 - Fully compositional,3 - A great deal or fully,3 - A great deal or fully,Female,,23,Yes,,,I have recorded the completion code,8745,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"

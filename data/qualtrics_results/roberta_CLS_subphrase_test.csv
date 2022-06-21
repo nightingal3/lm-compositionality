@@ -1,0 +1,31 @@
+phrase,correct,is_idiom,human_comp_score,closer_meaning_human,closer_meaning_model
+spelling bee,correct,True,1.0,spelling,spelling
+date with destiny,correct,True,1.3333333333333333,with destiny,with destiny
+couch potato,correct,True,1.3333333333333333,couch,couch
+as right as rain,correct,True,1.0,as right,as right
+second banana,correct,True,1.0,second,second
+eternal sleep,correct,True,1.6666666666666667,eternal,eternal
+stage coach,correct,False,1.6666666666666667,coach,coach
+bargain basement,correct,True,1.6666666666666667,bargain,bargain
+walk of life,correct,True,1.3333333333333333,of life,of life
+rat race,correct,True,1.3333333333333333,race,race
+pearl of wisdom,correct,True,2.0,of wisdom,of wisdom
+lap of luxury,correct,True,1.6666666666666667,of luxury,of luxury
+yellow journalist,correct,True,1.3333333333333333,journalist,journalist
+rainbow bridge,wrong,True,1.3333333333333333,bridge,rainbow
+top dog,wrong,True,1.3333333333333333,top,dog
+grandfather clock,wrong,True,1.6666666666666667,clock,grandfather
+inner circle,wrong,True,1.3333333333333333,inner,circle
+fashion plate,wrong,True,1.3333333333333333,fashion,plate
+noble gas,wrong,True,1.3333333333333333,gas,noble
+second fiddle,wrong,True,1.0,second,fiddle
+dog and pony show,wrong,True,1.0,show,dog and pony
+sail under false colors,wrong,True,1.0,under false colors,sail
+young blood,wrong,True,1.6666666666666667,young,blood
+upper crust,wrong,True,1.3333333333333333,upper,crust
+peep of day,wrong,True,1.6666666666666667,of day,peep
+ballpark estimate,wrong,True,1.6666666666666667,estimate,ballpark
+rock bottom,wrong,True,1.6666666666666667,bottom,rock
+bold as brass,wrong,True,2.0,bold,as brass
+number crunching,wrong,True,1.3333333333333333,number,crunching
+sure as shooting,wrong,True,1.3333333333333333,sure,as shooting
