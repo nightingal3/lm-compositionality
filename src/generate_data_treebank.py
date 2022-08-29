@@ -248,7 +248,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
             
     if args.treebank_path: # brown: 192 files, wsj: 2313
-      treebank = CategorizedBracketParseCorpusReader(r"/projects/tir1/corpora/treebank_3/parsed/mrg/", r'(wsj/\d\d/wsj_\d\d\d\d|brown/c[a-z]/c[a-z]\d\d).mrg', cat_file='allcats.txt', tagset='wsj')
+      treebank = CategorizedBracketParseCorpusReader(args.treebank_path, r'(wsj/\d\d/wsj_\d\d\d\d|brown/c[a-z]/c[a-z]\d\d).mrg', cat_file='allcats.txt', tagset='wsj')
     else:
       treebank = nltk.corpus.treebank
     selected_files = [fileid for i, fileid in enumerate(list(treebank.fileids())) if (i % 10) == int(args.selection_num)]
